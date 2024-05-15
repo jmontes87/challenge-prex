@@ -33,7 +33,7 @@ class GiphyService extends Model
      * @return mixed
      * @throws \Exception
      */
-    public function searchText($query, $limit = 25, $offset = 0)
+    public function searchText($query, $limit = 25, $offset = 0, $bearerToken)
     {
         try {
 
@@ -47,13 +47,15 @@ class GiphyService extends Model
                 'bundle' => 'messaging_non_clips'
             ];
 
-            $response = Http::get('https://api.giphy.com/v1/gifs/search', $params);
+
+            $response = Http::withToken($bearerToken)
+                            ->get('https://api.giphy.com/v1/gifs/search', $params);
 
             $this->audienceLogService->log(array(
                 'user_id' => 1,//auth()->id(),
                 'service' => 'giphy/searchText',
                 'request_body' => json_encode($params),
-                'response_body' => $response->successful() ? $response->json() : json_decode($response),
+                'response_body' => $response->successful() ? json_encode($response->json(), true) : json_encode($response, true),
                 'http_status_code' => $response->status()
             ));
 
@@ -73,13 +75,14 @@ class GiphyService extends Model
      * @param string $id
      * @return mixed
      */
-    public function searchById($id)
+    public function searchById($id, $bearerToken)
     {
         try {
             
             $params = ['api_key' => config('app.giphy_api_key')];
 
-            $response = Http::get("https://api.giphy.com/v1/gifs/{$id}", $params);
+            $response = Http::withToken($bearerToken)
+                            ->get("https://api.giphy.com/v1/gifs/{$id}", $params);
 
             $this->audienceLogService->log(array(
                 'user_id' => 1,//auth()->id(),
@@ -105,7 +108,7 @@ class GiphyService extends Model
      *
      * @return void
      */
-    public function storeFavoriteGift()
+    public function storeFavoriteGift($bearerToken)
     {
         dd("");
     }

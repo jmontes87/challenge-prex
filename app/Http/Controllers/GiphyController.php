@@ -17,10 +17,14 @@ class GiphyController extends Controller
     public function searchText(Request $request)
     {
         try {
+            
+            $bearerToken = $request->bearerToken();
+
             $gifs = $this->giphyService->searchText(
                 $request->input('query'),
                 $request->input('limit', 25),
-                $request->input('offset', 0)
+                $request->input('offset', 0),
+                $bearerToken
             );
 
             return response()->json($gifs);
@@ -32,22 +36,23 @@ class GiphyController extends Controller
     public function searchById($id)
     {
         try {
-            $gif = $this->giphyService->searchById($id);
+            
+            $bearerToken = request()->bearerToken();
+            $gif = $this->giphyService->searchById($id, $bearerToken);
+
             return response()->json($gif);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
 
-    public function storeById(Request $request)
+    public function storeById(Request $request, $id)
     {
         try {
 
-            $gif = $this->giphyService->storeFavoriteGift(
-                $request->input('gif_id'),
-                $request->input('alias')
-            );
-            
+            $bearerToken = request()->bearerToken();
+            $gif = $this->giphyService->searchById($id, $bearerToken);
+
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

@@ -5,9 +5,8 @@ namespace App\Models\Services;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\AudienceLog;
-use App\Contracts\DataValidationAudienceLogInterface;
 
-class AudienceLogService extends Model implements DataValidationAudienceLogInterface
+class AudienceLogService extends Model
 {
     use HasFactory;
 

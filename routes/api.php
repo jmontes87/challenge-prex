@@ -16,16 +16,10 @@ use App\Http\Controllers\GiphyController;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('/user/login', [LoginController::class, 'login'])->name('login');
 
-Route::prefix('/user')->group(function(){
-    Route::post('/login', [LoginController::class, 'login']);
-});
+Route::middleware('auth:api')->get('/giphy', [GiphyController::class, 'searchText']);
 
-Route::get('/giphy', [GiphyController::class, 'searchText']);
+Route::middleware('auth:api')->get('/giphy/{id}/id', [GiphyController::class, 'searchById']);
 
-Route::get('/giphy/{id}/id', [GiphyController::class, 'searchById']);
-
-Route::post('/giphy', [GiphyController::class, 'storeById']);
+//Route::middleware('auth:api')->post('/giphy', [GiphyController::class, 'storeById']);
