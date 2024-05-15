@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\GiphyController;
+use App\Http\Controllers\AudienceLogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,5 +22,8 @@ Route::post('/user/login', [LoginController::class, 'login'])->name('login');
 Route::middleware('auth:api')->get('/giphy', [GiphyController::class, 'searchText']);
 
 Route::middleware('auth:api')->get('/giphy/{id}/id', [GiphyController::class, 'searchById']);
+
+Route::middleware('auth:api')->get('/audience_logs', [AudienceLogController::class, 'getAll']);
+
 
 //Route::middleware('auth:api')->post('/giphy', [GiphyController::class, 'storeById']);

@@ -32,6 +32,15 @@ class AudienceLogService extends Model
         $log->save();
     }
 
+    public function getAll()
+    {
+        try {
+            return response()->json(AudienceLog::paginate(20));
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Error al realizar la solicitud: ' . $e->getMessage()], 500);
+        } 
+    }
+
     /**
      * Valida los datos del log de audiencia.
      *
