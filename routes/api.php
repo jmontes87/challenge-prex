@@ -24,4 +24,8 @@ Route::prefix('/user')->group(function(){
     Route::post('/login', [LoginController::class, 'login']);
 });
 
-Route::get('/giphy', [GiphyController::class, 'search']);
+Route::get('/giphy', [GiphyController::class, 'searchText']);
+
+Route::get('/giphy/{id}/id', [GiphyController::class, 'searchById']);
+
+Route::post('/giphy', [GiphyController::class, 'storeById']);
