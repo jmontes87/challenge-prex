@@ -33,7 +33,7 @@ class GiphyRepository extends Model
      * @return mixed
      * @throws \Exception
      */
-    public function searchText($query, $limit = 25, $offset = 0, $bearerToken)
+    public function search($query, $limit = 25, $offset = 0, $bearerToken)
     {
         try {
 
@@ -53,7 +53,7 @@ class GiphyRepository extends Model
 
             $this->audienceLogService->log(array(
                 'user_id' => 1,//auth()->id(),
-                'service' => 'giphy/searchText',
+                'service' => 'giphy/search',
                 'request_body' => json_encode($params),
                 'response_body' => $response->successful() ? json_encode($response->json(), true) : json_encode($response, true),
                 'http_status_code' => $response->status()

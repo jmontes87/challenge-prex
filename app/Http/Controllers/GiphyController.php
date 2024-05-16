@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\GiphyRepository;
 use App\Http\Resources\GiphyResource;
+use App\Http\Requests\GiphySearchRequest;
 
 class GiphyController extends Controller
 {
@@ -15,25 +16,26 @@ class GiphyController extends Controller
         $this->giphyRepository = $giphyRepository;
     }
 
-    public function searchText(Request $request)
+    public function search(GiphySearchRequest $request)
     {
-        try {
-            
-            $bearerToken = $request->bearerToken();
 
-            $response = $this->giphyRepository->searchText(
+        try {
+            $bearerToken = $request->bearerToken();
+    
+            $response = $this->giphyRepository->search(
                 $request->input('query'),
                 $request->input('limit', 25),
                 $request->input('offset', 0),
                 $bearerToken
             );
-
+    
             return GiphyResource::collection($response);
             
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
     }
+    
 
     public function searchById($id)
     {
