@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\Services;
+namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use App\Models\Services\AudienceLogService;
 
-class GiphyService extends Model
+class GiphyRepository extends Model
 {
     use HasFactory;
 

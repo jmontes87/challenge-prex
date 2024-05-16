@@ -3,15 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Services\GiphyService;
+use App\Repositories\GiphyRepository;
+use App\Http\Resources\GiphyResource;
 
 class GiphyController extends Controller
 {
-    protected $giphyService;
+    protected $giphyRepository;
 
-    public function __construct(GiphyService $giphyService)
+    public function __construct(GiphyRepository $giphyRepository)
     {
-        $this->giphyService = $giphyService;
+        $this->giphyRepository = $giphyRepository;
     }
 
     public function searchText(Request $request)
@@ -20,14 +21,15 @@ class GiphyController extends Controller
             
             $bearerToken = $request->bearerToken();
 
-            $gifs = $this->giphyService->searchText(
+            $response = $this->giphyRepository->searchText(
                 $request->input('query'),
                 $request->input('limit', 25),
                 $request->input('offset', 0),
                 $bearerToken
             );
 
-            return response()->json($gifs);
+            return GiphyResource::collection($response);
+            
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }
@@ -38,7 +40,7 @@ class GiphyController extends Controller
         try {
             
             $bearerToken = request()->bearerToken();
-            $gif = $this->giphyService->searchById($id, $bearerToken);
+            $gif = $this->giphyRepository->searchById($id, $bearerToken);
 
             return response()->json($gif);
         } catch (\Exception $e) {
@@ -51,7 +53,7 @@ class GiphyController extends Controller
         try {
 
             $bearerToken = request()->bearerToken();
-            $gif = $this->giphyService->searchById($id, $bearerToken);
+            $gif = $this->giphyRepository->searchById($id, $bearerToken);
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
