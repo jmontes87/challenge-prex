@@ -21,7 +21,7 @@ Route::post('/user/login', [LoginController::class, 'login'])->name('login');
 
 Route::middleware('auth:api')->get('/giphy', [GiphyController::class, 'search']);
 
-Route::middleware('auth:api')->get('/giphy/{id}/id', [GiphyController::class, 'searchById']);
+Route::middleware('auth:api')->get('/giphy/{id}/id', [GiphyController::class, 'getById']);
 
 Route::middleware('auth:api')->get('/audience_logs', [AudienceLogController::class, 'getAll']);
 

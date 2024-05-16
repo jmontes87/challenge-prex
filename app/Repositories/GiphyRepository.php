@@ -47,7 +47,6 @@ class GiphyRepository extends Model
                 'bundle' => 'messaging_non_clips'
             ];
 
-
             $response = Http::withToken($bearerToken)
                             ->get('https://api.giphy.com/v1/gifs/search', $params);
 
@@ -75,7 +74,7 @@ class GiphyRepository extends Model
      * @param string $id
      * @return mixed
      */
-    public function searchById($id, $bearerToken)
+    public function getById($id, $bearerToken)
     {
         try {
             
@@ -86,15 +85,14 @@ class GiphyRepository extends Model
 
             $this->audienceLogService->log(array(
                 'user_id' => 1,//auth()->id(),
-                'service' => 'giphy/searchById',
+                'service' => 'giphy/getById',
                 'request_body' => json_encode($params),
                 'response_body' => $response->successful() ? json_encode($response->json()) : json_decode($response),
                 'http_status_code' => $response->status()
             ));
 
             if ($response->successful()) {
-                $gif = $response->json();
-                return response()->json($gif);
+                return $response->json();
             } else {
                 return response()->json(['error' => 'Error al comunicarse con la API de Giphy'], $response->status());
             }

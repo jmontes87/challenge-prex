@@ -18,8 +18,8 @@ class GiphySearchRequest extends FormRequest
     {
         return [
             'query' => 'required|string',
-            'limit' => 'sometimes|string',
-            'offset' => 'sometimes|string',
+            'limit' => 'sometimes|integer',
+            'offset' => 'sometimes|integer',
         ];
     }
 
