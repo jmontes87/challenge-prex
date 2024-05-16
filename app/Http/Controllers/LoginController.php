@@ -4,23 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\LoginRequest;
+use App\Http\Resources\LoginResource;
 
 class LoginController extends Controller
 {
-    public function login(Request $request) {
-        $credentials = $request->only('email', 'password');
-
-        if(!Auth::attempt($credentials)){
-            return response()->json([
-                'message' => 'Unauthorized'
-            ], 401);
-        }
+    public function login(LoginRequest $request) {
 
         $user = Auth::user();
+        $token = $user->createToken('authToken');
 
-        return response()->json([
-            'access_token' => $user->createToken('authToken')
-        ]);
-
+        return new LoginResource($token);
     }
+
 }
