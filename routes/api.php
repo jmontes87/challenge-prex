@@ -25,5 +25,4 @@ Route::middleware('auth:api')->get('/giphy/{id}/id', [GiphyController::class, 'g
 
 Route::middleware('auth:api')->get('/audience_logs', [AudienceLogController::class, 'getAll']);
 
-
-//Route::middleware('auth:api')->post('/giphy', [GiphyController::class, 'storeById']);
+Route::middleware('auth:api')->post('/giphy', [GiphyController::class, 'storeById']);

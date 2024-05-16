@@ -7,6 +7,7 @@ use App\Repositories\GiphyRepository;
 use App\Http\Resources\GiphySearchResource;
 use App\Http\Requests\GiphySearchRequest;
 use App\Http\Resources\GiphyGetByIdResource;
+use App\Models\FavoriteGift;
 
 class GiphyController extends Controller
 {
@@ -64,12 +65,18 @@ class GiphyController extends Controller
         }
     }
 
-    public function storeById(Request $request, $id)
+    public function storeById(Request $request)
     {
         try {
 
             $bearerToken = request()->bearerToken();
-            $gif = $this->giphyRepository->getById($id, $bearerToken);
+            $response = $this->giphyRepository->getById($request->id, $bearerToken);
+            
+            $gif = new FavoriteGift();
+            $gif->alias = 'test';
+            $gif->gif_id = $response['data']['id'];
+            $gif->user_id = 1;
+            $gif->save();
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
