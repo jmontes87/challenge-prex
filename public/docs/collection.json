@@ -5,12 +5,12 @@
             "key": "baseUrl",
             "type": "string",
             "name": "string",
-            "value": "http:\/\/localhost"
+            "value": "http:\/\/localhost:8000"
         }
     ],
     "info": {
         "name": "Challenge Prex",
-        "_postman_id": "730edb24-949b-4087-a395-587d78776ba7",
+        "_postman_id": "925513d4-f201-40be-846b-1a22c4e757fb",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"jerad.mcclure@example.org\",\"password\":\"repudiandae\"}"
+                            "raw": "{\"email\":\"theresia81@example.com\",\"password\":\"et\"}"
                         },
                         "description": "",
                         "auth": {
@@ -72,7 +72,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"query\":\"ea\",\"limit\":8,\"offset\":12}"
+                            "raw": "{\"query\":\"vel\",\"limit\":19,\"offset\":16}"
                         },
                         "description": "",
                         "auth": {
@@ -113,7 +113,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "consectetur",
+                                    "value": "non",
                                     "description": "The ID of the giphy."
                                 }
                             ]

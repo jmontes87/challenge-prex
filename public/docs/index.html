@@ -106,7 +106,7 @@
     <div class="content">
         <h1 id="introduction">Introduction</h1>
 <aside>
-    <strong>Base URL</strong>: <code>http://localhost</code>
+    <strong>Base URL</strong>: <code>http://localhost:8000</code>
 </aside>
 <p>This documentation aims to provide all the information you need to work with our API.</p>
 <aside>As you scroll, you'll see code examples for working with the API in different programming languages in the dark area to the right (or as part of the content on mobile).
@@ -132,19 +132,19 @@ You can switch the language used with the tabs at the top right (or from the nav
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/user/login" \
+    "http://localhost:8000/api/user/login" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"jerad.mcclure@example.org\",
-    \"password\": \"repudiandae\"
+    \"email\": \"theresia81@example.com\",
+    \"password\": \"et\"
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/user/login"
+    "http://localhost:8000/api/user/login"
 );
 
 const headers = {
@@ -153,8 +153,8 @@ const headers = {
 };
 
 let body = {
-    "email": "jerad.mcclure@example.org",
-    "password": "repudiandae"
+    "email": "theresia81@example.com",
+    "password": "et"
 };
 
 fetch(url, {
@@ -243,10 +243,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-user-login"
-               value="jerad.mcclure@example.org"
+               value="theresia81@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>jerad.mcclure@example.org</code></p>
+<p>Must be a valid email address. Example: <code>theresia81@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -254,10 +254,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-user-login"
-               value="repudiandae"
+               value="et"
                data-component="body">
     <br>
-<p>Example: <code>repudiandae</code></p>
+<p>Example: <code>et</code></p>
         </div>
         </form>
 
@@ -274,20 +274,20 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/giphy" \
+    --get "http://localhost:8000/api/giphy" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"query\": \"ea\",
-    \"limit\": 8,
-    \"offset\": 12
+    \"query\": \"vel\",
+    \"limit\": 19,
+    \"offset\": 16
 }"
 </code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/giphy"
+    "http://localhost:8000/api/giphy"
 );
 
 const headers = {
@@ -296,9 +296,9 @@ const headers = {
 };
 
 let body = {
-    "query": "ea",
-    "limit": 8,
-    "offset": 12
+    "query": "vel",
+    "limit": 19,
+    "offset": 16
 };
 
 fetch(url, {
@@ -403,10 +403,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="query"                data-endpoint="GETapi-giphy"
-               value="ea"
+               value="vel"
                data-component="body">
     <br>
-<p>Example: <code>ea</code></p>
+<p>Example: <code>vel</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>limit</code></b>&nbsp;&nbsp;
@@ -414,10 +414,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="limit"                data-endpoint="GETapi-giphy"
-               value="8"
+               value="19"
                data-component="body">
     <br>
-<p>Example: <code>8</code></p>
+<p>Example: <code>19</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>offset</code></b>&nbsp;&nbsp;
@@ -425,10 +425,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="offset"                data-endpoint="GETapi-giphy"
-               value="12"
+               value="16"
                data-component="body">
     <br>
-<p>Example: <code>12</code></p>
+<p>Example: <code>16</code></p>
         </div>
         </form>
 
@@ -445,14 +445,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/giphy/consectetur/id" \
+    --get "http://localhost:8000/api/giphy/non/id" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/giphy/consectetur/id"
+    "http://localhost:8000/api/giphy/non/id"
 );
 
 const headers = {
@@ -561,10 +561,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-giphy--id--id"
-               value="consectetur"
+               value="non"
                data-component="url">
     <br>
-<p>The ID of the giphy. Example: <code>consectetur</code></p>
+<p>The ID of the giphy. Example: <code>non</code></p>
             </div>
                     </form>
 
@@ -581,14 +581,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost/api/audience_logs" \
+    --get "http://localhost:8000/api/audience_logs" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/audience_logs"
+    "http://localhost:8000/api/audience_logs"
 );
 
 const headers = {
@@ -705,14 +705,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost/api/giphy" \
+    "http://localhost:8000/api/giphy" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost/api/giphy"
+    "http://localhost:8000/api/giphy"
 );
 
 const headers = {
