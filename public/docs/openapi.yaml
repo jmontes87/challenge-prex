@@ -1,0 +1,146 @@
+openapi: 3.0.3
+info:
+  title: 'Challenge Prex'
+  description: ''
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost'
+paths:
+  /api/user/login:
+    post:
+      summary: ''
+      operationId: postApiUserLogin
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address.'
+                  example: jerad.mcclure@example.org
+                password:
+                  type: string
+                  description: ''
+                  example: repudiandae
+              required:
+                - email
+                - password
+      security: []
+  /api/giphy:
+    get:
+      summary: 'Search for Giphys based on the provided criteria.'
+      operationId: searchForGiphysBasedOnTheProvidedCriteria
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                query:
+                  type: string
+                  description: ''
+                  example: ea
+                limit:
+                  type: integer
+                  description: ''
+                  example: 8
+                offset:
+                  type: integer
+                  description: ''
+                  example: 12
+              required:
+                - query
+      security: []
+    post:
+      summary: ''
+      operationId: postApiGiphy
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Endpoints
+      security: []
+  '/api/giphy/{id}/id':
+    get:
+      summary: 'Get a Giphy by its ID.'
+      operationId: getAGiphyByItsID
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the giphy.'
+        example: consectetur
+        required: true
+        schema:
+          type: string
+  /api/audience_logs:
+    get:
+      summary: ''
+      operationId: getApiAudience_logs
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: Unauthenticated.
+                properties:
+                  message:
+                    type: string
+                    example: Unauthenticated.
+      tags:
+        - Endpoints
+      security: []
+tags:
+  -
+    name: Endpoints
+    description: ''
