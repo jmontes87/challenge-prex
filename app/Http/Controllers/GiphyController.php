@@ -22,13 +22,15 @@ class GiphyController extends Controller
     /**
      * Search for Giphys based on the provided criteria.
      *
+     * @responseFile storage/responses/giphy.search.json
+     *
      * @param \App\Http\Requests\GiphySearchRequest $request The request containing the search criteria.
      * @return \Illuminate\Http\JsonResponse The JSON response containing the search results.
      */
     public function search(GiphySearchRequest $request)
     {
         try {
-
+            
             $bearerToken = $request->bearerToken();
     
             $response = $this->giphyRepository->search(
@@ -48,6 +50,8 @@ class GiphyController extends Controller
 
     /**
      * Get a Giphy by its ID.
+     *
+     * @responseFile storage/responses/giphy.getById.json
      *
      * @param int $id The ID of the Giphy.
      * @return \Illuminate\Http\JsonResponse The JSON response containing the Giphy data.

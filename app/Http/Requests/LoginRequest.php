@@ -22,6 +22,25 @@ class LoginRequest extends FormRequest
         ];
     }
 
+        /**
+     * Get the body parameters for the request.
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'email' => [
+                'description' => 'The email address of the user.',
+                'example' => 'john@example.com',
+            ],
+            'password' => [
+                'description' => 'The password of the user.',
+                'example' => 'secret',
+            ],
+        ];
+    }
+
     /**
      * Handle a passed validation attempt.
      *

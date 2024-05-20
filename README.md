@@ -64,3 +64,23 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 ## License
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+
+
+## Step by step
+php artisan migrate --seed
+php artisan optimize
+
+# Create GIPHY_API_KEY
+Para obtener una clave de API de GIPHY, sigue estos pasos:
+
+- Visita la guía de inicio rápido de la API de GIPHY en GIPHY API Quick Start Guide.
+- Haz clic en "Create an API Key" en el Developer Dashboard, lo cual te llevará a GIPHY Dashboard.
+- Selecciona el tipo de API y haz clic en "Next Step" (para nuestro proyecto, es API)
+- Completa los siguientes campos:
+  a. Ingresa el nombre de tu aplicación. Ejemplo: 'Prex Challenge'.
+  b. Selecciona la plataforma. Ejemplo: 'Web'.
+- Haz clic en "Create API Key".
+
+Una vez creada la API Key, copia su valor y colócalo en tu archivo .env:
+GIPHY_API_KEY=TU_API_KEY

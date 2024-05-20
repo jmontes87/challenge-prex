@@ -24,6 +24,29 @@ class GiphySearchRequest extends FormRequest
     }
 
     /**
+     * Get the body parameters for the request.
+     *
+     * @return array
+     */
+    public function bodyParameters()
+    {
+        return [
+            'query' => [
+                'description' => 'The search query for GIFs.',
+                'example' => 'cute cats',
+            ],
+            'limit' => [
+                'description' => 'The maximum number of results to be returned.',
+                'example' => 10,
+            ],
+            'offset' => [
+                'description' => 'The offset of search results.',
+                'example' => 0,
+            ],
+        ];
+    }
+
+    /**
      * Handle a failed validation attempt.
      *
      * @param  \Illuminate\Contracts\Validation\Validator  $validator

@@ -75,7 +75,7 @@
                 </li>
                                     <ul id="tocify-subheader-endpoints" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="endpoints-POSTapi-user-login">
-                                <a href="#endpoints-POSTapi-user-login">POST api/user/login</a>
+                                <a href="#endpoints-POSTapi-user-login">Handle the user login request.</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="endpoints-GETapi-giphy">
                                 <a href="#endpoints-GETapi-giphy">Search for Giphys based on the provided criteria.</a>
@@ -100,7 +100,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: May 18, 2024</li>
+        <li>Last updated: May 20, 2024</li>
     </ul>
 </div>
 
@@ -124,7 +124,7 @@ You can switch the language used with the tabs at the top right (or from the nav
 
     
 
-                                <h2 id="endpoints-POSTapi-user-login">POST api/user/login</h2>
+                                <h2 id="endpoints-POSTapi-user-login">Handle the user login request.</h2>
 
 <p>
 </p>
@@ -141,8 +141,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"lorenzo.volkman@example.net\",
-    \"password\": \"vel\"
+    \"email\": \"john@example.com\",
+    \"password\": \"secret\"
 }"
 </code></pre></div>
 
@@ -158,8 +158,8 @@ const headers = {
 };
 
 let body = {
-    "email": "lorenzo.volkman@example.net",
-    "password": "vel"
+    "email": "john@example.com",
+    "password": "secret"
 };
 
 fetch(url, {
@@ -180,8 +180,8 @@ $response = $client-&gt;post(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'email' =&gt; 'lorenzo.volkman@example.net',
-            'password' =&gt; 'vel',
+            'email' =&gt; 'john@example.com',
+            'password' =&gt; 'secret',
         ],
     ]
 );
@@ -191,7 +191,19 @@ print_r(json_decode((string) $body));</code></pre></div>
 </span>
 
 <span id="example-responses-POSTapi-user-login">
-</span>
+            <blockquote>
+            <p>Example response (200):</p>
+        </blockquote>
+                <pre>
+
+<code class="language-json" style="max-height: 300px;">{
+    &quot;data&quot;: {
+        &quot;token&quot;: &quot;HASH_TOKEN&quot;,
+        &quot;expires_at&quot;: &quot;2024-11-20 14:20:28&quot;
+    }
+}</code>
+ </pre>
+    </span>
 <span id="execution-results-POSTapi-user-login" hidden>
     <blockquote>Received response<span
                 id="execution-response-status-POSTapi-user-login"></span>:
@@ -268,10 +280,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-user-login"
-               value="lorenzo.volkman@example.net"
+               value="john@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>lorenzo.volkman@example.net</code></p>
+<p>The email address of the user. Must be a valid email address. Example: <code>john@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -279,10 +291,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-user-login"
-               value="vel"
+               value="secret"
                data-component="body">
     <br>
-<p>Example: <code>vel</code></p>
+<p>The password of the user. Example: <code>secret</code></p>
         </div>
         </form>
 
@@ -303,9 +315,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"query\": \"illo\",
-    \"limit\": 14,
-    \"offset\": 12
+    \"query\": \"cute cats\",
+    \"limit\": 10,
+    \"offset\": 0
 }"
 </code></pre></div>
 
@@ -321,9 +333,9 @@ const headers = {
 };
 
 let body = {
-    "query": "illo",
-    "limit": 14,
-    "offset": 12
+    "query": "cute cats",
+    "limit": 10,
+    "offset": 0
 };
 
 fetch(url, {
@@ -344,9 +356,9 @@ $response = $client-&gt;get(
             'Accept' =&gt; 'application/json',
         ],
         'json' =&gt; [
-            'query' =&gt; 'illo',
-            'limit' =&gt; 14,
-            'offset' =&gt; 12,
+            'query' =&gt; 'cute cats',
+            'limit' =&gt; 10,
+            'offset' =&gt; 0,
         ],
     ]
 );
@@ -357,19 +369,314 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-giphy">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;data&quot;: [
+        {
+            &quot;type&quot;: &quot;gif&quot;,
+            &quot;id&quot;: &quot;Fu3OjBQiCs3s0ZuLY3&quot;,
+            &quot;url&quot;: &quot;https://giphy.com/gifs/moodman-reaction-Fu3OjBQiCs3s0ZuLY3&quot;,
+            &quot;slug&quot;: &quot;moodman-reaction-Fu3OjBQiCs3s0ZuLY3&quot;,
+            &quot;title&quot;: &quot;Dog Smile GIF by MOODMAN&quot;,
+            &quot;is_sticker&quot;: 0,
+            &quot;images&quot;: {
+                &quot;original&quot;: {
+                    &quot;height&quot;: &quot;356&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;6229447&quot;,
+                    &quot;url&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;10123487&quot;,
+                    &quot;mp4&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;3273720&quot;,
+                    &quot;webp&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.webp&amp;ct=g&quot;,
+                    &quot;frames&quot;: &quot;225&quot;,
+                    &quot;hash&quot;: &quot;4f9bc197210d75302db460e6f1e51651&quot;
+                },
+                &quot;fixed_height&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;112&quot;,
+                    &quot;size&quot;: &quot;2718689&quot;,
+                    &quot;url&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;357336&quot;,
+                    &quot;mp4&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;938578&quot;,
+                    &quot;webp&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_height_downsampled&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;112&quot;,
+                    &quot;size&quot;: &quot;75959&quot;,
+                    &quot;url&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200_d.gif&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;39406&quot;,
+                    &quot;webp&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200_d.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_height_small&quot;: {
+                    &quot;height&quot;: &quot;100&quot;,
+                    &quot;width&quot;: &quot;56&quot;,
+                    &quot;size&quot;: &quot;823081&quot;,
+                    &quot;url&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;125145&quot;,
+                    &quot;mp4&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;404724&quot;,
+                    &quot;webp&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width&quot;: {
+                    &quot;height&quot;: &quot;356&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;5373936&quot;,
+                    &quot;url&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;1504383&quot;,
+                    &quot;mp4&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;3285966&quot;,
+                    &quot;webp&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width_downsampled&quot;: {
+                    &quot;height&quot;: &quot;356&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;185594&quot;,
+                    &quot;url&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w_d.gif&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;115364&quot;,
+                    &quot;webp&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w_d.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width_small&quot;: {
+                    &quot;height&quot;: &quot;178&quot;,
+                    &quot;width&quot;: &quot;100&quot;,
+                    &quot;size&quot;: &quot;2173841&quot;,
+                    &quot;url&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;43180&quot;,
+                    &quot;mp4&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;826244&quot;,
+                    &quot;webp&quot;: &quot;https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.webp&amp;ct=g&quot;
+                }
+            },
+            &quot;alt_text&quot;: &quot;Video gif. A close-up of a white dog with sprigs of tiny flowers on its head as it appears to smile with squinty eyes and teeth bared. &quot;
+        },
+        {
+            &quot;type&quot;: &quot;gif&quot;,
+            &quot;id&quot;: &quot;3o7527pa7qs9kCG78A&quot;,
+            &quot;url&quot;: &quot;https://giphy.com/gifs/nehumanesociety-funny-dog-3o7527pa7qs9kCG78A&quot;,
+            &quot;slug&quot;: &quot;nehumanesociety-funny-dog-3o7527pa7qs9kCG78A&quot;,
+            &quot;title&quot;: &quot;What Is It Reaction GIF by Nebraska Humane Society&quot;,
+            &quot;is_sticker&quot;: 0,
+            &quot;images&quot;: {
+                &quot;original&quot;: {
+                    &quot;height&quot;: &quot;480&quot;,
+                    &quot;width&quot;: &quot;480&quot;,
+                    &quot;size&quot;: &quot;2789736&quot;,
+                    &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;352829&quot;,
+                    &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;494382&quot;,
+                    &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.webp&amp;ct=g&quot;,
+                    &quot;frames&quot;: &quot;48&quot;,
+                    &quot;hash&quot;: &quot;d1326125030ebdcb85f94ce833acb8f2&quot;
+                },
+                &quot;fixed_height&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;539105&quot;,
+                    &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;78904&quot;,
+                    &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;198818&quot;,
+                    &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_height_downsampled&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;73493&quot;,
+                    &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200_d.gif&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;44672&quot;,
+                    &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200_d.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_height_small&quot;: {
+                    &quot;height&quot;: &quot;100&quot;,
+                    &quot;width&quot;: &quot;100&quot;,
+                    &quot;size&quot;: &quot;195611&quot;,
+                    &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;32643&quot;,
+                    &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;96772&quot;,
+                    &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;539105&quot;,
+                    &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;78904&quot;,
+                    &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;198818&quot;,
+                    &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width_downsampled&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;73493&quot;,
+                    &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w_d.gif&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;44672&quot;,
+                    &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w_d.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width_small&quot;: {
+                    &quot;height&quot;: &quot;100&quot;,
+                    &quot;width&quot;: &quot;100&quot;,
+                    &quot;size&quot;: &quot;195611&quot;,
+                    &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;32643&quot;,
+                    &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;96772&quot;,
+                    &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.webp&amp;ct=g&quot;
+                }
+            },
+            &quot;alt_text&quot;: &quot;Video gif. A black and white pitbull terrier leans back with its tongue hanging out then tilts its head down to the side with a perplexed look. Text, \&quot;What?\&quot;&quot;
+        },
+        {
+            &quot;type&quot;: &quot;gif&quot;,
+            &quot;id&quot;: &quot;gKHGnB1ml0moQdjhEJ&quot;,
+            &quot;url&quot;: &quot;https://giphy.com/gifs/moodman-reaction-dog-zoom-gKHGnB1ml0moQdjhEJ&quot;,
+            &quot;slug&quot;: &quot;moodman-reaction-dog-zoom-gKHGnB1ml0moQdjhEJ&quot;,
+            &quot;title&quot;: &quot;Confused Dog GIF by MOODMAN&quot;,
+            &quot;is_sticker&quot;: 0,
+            &quot;images&quot;: {
+                &quot;original&quot;: {
+                    &quot;height&quot;: &quot;406&quot;,
+                    &quot;width&quot;: &quot;480&quot;,
+                    &quot;size&quot;: &quot;1594135&quot;,
+                    &quot;url&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;112515&quot;,
+                    &quot;mp4&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;237244&quot;,
+                    &quot;webp&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=giphy.webp&amp;ct=g&quot;,
+                    &quot;frames&quot;: &quot;29&quot;,
+                    &quot;hash&quot;: &quot;dee77f6b73217a5a9ac650d776423a1c&quot;
+                },
+                &quot;fixed_height&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;236&quot;,
+                    &quot;size&quot;: &quot;388642&quot;,
+                    &quot;url&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;39650&quot;,
+                    &quot;mp4&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;108988&quot;,
+                    &quot;webp&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_height_downsampled&quot;: {
+                    &quot;height&quot;: &quot;200&quot;,
+                    &quot;width&quot;: &quot;236&quot;,
+                    &quot;size&quot;: &quot;105764&quot;,
+                    &quot;url&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200_d.gif&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;46902&quot;,
+                    &quot;webp&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200_d.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_height_small&quot;: {
+                    &quot;height&quot;: &quot;100&quot;,
+                    &quot;width&quot;: &quot;118&quot;,
+                    &quot;size&quot;: &quot;137927&quot;,
+                    &quot;url&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;20417&quot;,
+                    &quot;mp4&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;55222&quot;,
+                    &quot;webp&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width&quot;: {
+                    &quot;height&quot;: &quot;169&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;320424&quot;,
+                    &quot;url&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;32849&quot;,
+                    &quot;mp4&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;92446&quot;,
+                    &quot;webp&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width_downsampled&quot;: {
+                    &quot;height&quot;: &quot;169&quot;,
+                    &quot;width&quot;: &quot;200&quot;,
+                    &quot;size&quot;: &quot;70948&quot;,
+                    &quot;url&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w_d.gif&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;37140&quot;,
+                    &quot;webp&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=200w_d.webp&amp;ct=g&quot;
+                },
+                &quot;fixed_width_small&quot;: {
+                    &quot;height&quot;: &quot;85&quot;,
+                    &quot;width&quot;: &quot;100&quot;,
+                    &quot;size&quot;: &quot;110923&quot;,
+                    &quot;url&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.gif&amp;ct=g&quot;,
+                    &quot;mp4_size&quot;: &quot;17804&quot;,
+                    &quot;mp4&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.mp4&amp;ct=g&quot;,
+                    &quot;webp_size&quot;: &quot;46454&quot;,
+                    &quot;webp&quot;: &quot;https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&amp;ep=v1_gifs_search&amp;rid=100w.webp&amp;ct=g&quot;
+                }
+            },
+            &quot;alt_text&quot;: &quot;&quot;
+        }
+    ],
+    &quot;meta&quot;: {
+        &quot;status&quot;: {
+            &quot;type&quot;: null,
+            &quot;id&quot;: null,
+            &quot;url&quot;: null,
+            &quot;slug&quot;: null,
+            &quot;title&quot;: null,
+            &quot;is_sticker&quot;: null,
+            &quot;images&quot;: null,
+            &quot;alt_text&quot;: null
+        },
+        &quot;msg&quot;: {
+            &quot;type&quot;: null,
+            &quot;id&quot;: null,
+            &quot;url&quot;: null,
+            &quot;slug&quot;: null,
+            &quot;title&quot;: null,
+            &quot;is_sticker&quot;: null,
+            &quot;images&quot;: null,
+            &quot;alt_text&quot;: null
+        },
+        &quot;response_id&quot;: {
+            &quot;type&quot;: null,
+            &quot;id&quot;: null,
+            &quot;url&quot;: null,
+            &quot;slug&quot;: null,
+            &quot;title&quot;: null,
+            &quot;is_sticker&quot;: null,
+            &quot;images&quot;: null,
+            &quot;alt_text&quot;: null
+        }
+    },
+    &quot;pagination&quot;: {
+        &quot;total_count&quot;: {
+            &quot;type&quot;: null,
+            &quot;id&quot;: null,
+            &quot;url&quot;: null,
+            &quot;slug&quot;: null,
+            &quot;title&quot;: null,
+            &quot;is_sticker&quot;: null,
+            &quot;images&quot;: null,
+            &quot;alt_text&quot;: null
+        },
+        &quot;count&quot;: {
+            &quot;type&quot;: null,
+            &quot;id&quot;: null,
+            &quot;url&quot;: null,
+            &quot;slug&quot;: null,
+            &quot;title&quot;: null,
+            &quot;is_sticker&quot;: null,
+            &quot;images&quot;: null,
+            &quot;alt_text&quot;: null
+        },
+        &quot;offset&quot;: {
+            &quot;type&quot;: null,
+            &quot;id&quot;: null,
+            &quot;url&quot;: null,
+            &quot;slug&quot;: null,
+            &quot;title&quot;: null,
+            &quot;is_sticker&quot;: null,
+            &quot;images&quot;: null,
+            &quot;alt_text&quot;: null
+        }
+    }
 }</code>
  </pre>
     </span>
@@ -449,10 +756,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="query"                data-endpoint="GETapi-giphy"
-               value="illo"
+               value="cute cats"
                data-component="body">
     <br>
-<p>Example: <code>illo</code></p>
+<p>The search query for GIFs. Example: <code>cute cats</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>limit</code></b>&nbsp;&nbsp;
@@ -460,10 +767,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="limit"                data-endpoint="GETapi-giphy"
-               value="14"
+               value="10"
                data-component="body">
     <br>
-<p>Example: <code>14</code></p>
+<p>The maximum number of results to be returned. Example: <code>10</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>offset</code></b>&nbsp;&nbsp;
@@ -471,10 +778,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="offset"                data-endpoint="GETapi-giphy"
-               value="12"
+               value="0"
                data-component="body">
     <br>
-<p>Example: <code>12</code></p>
+<p>The offset of search results. Example: <code>0</code></p>
         </div>
         </form>
 
@@ -491,14 +798,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/giphy/corrupti/id" \
+    --get "http://localhost:8000/api/giphy/expedita/id" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/giphy/corrupti/id"
+    "http://localhost:8000/api/giphy/expedita/id"
 );
 
 const headers = {
@@ -514,7 +821,7 @@ fetch(url, {
 
 <div class="php-example">
     <pre><code class="language-php">$client = new \GuzzleHttp\Client();
-$url = 'http://localhost:8000/api/giphy/corrupti/id';
+$url = 'http://localhost:8000/api/giphy/expedita/id';
 $response = $client-&gt;get(
     $url,
     [
@@ -531,19 +838,194 @@ print_r(json_decode((string) $body));</code></pre></div>
 
 <span id="example-responses-GETapi-giphy--id--id">
             <blockquote>
-            <p>Example response (401):</p>
+            <p>Example response (200):</p>
         </blockquote>
-                <details class="annotation">
-            <summary style="cursor: pointer;">
-                <small onclick="textContent = parentElement.parentElement.open ? 'Show headers' : 'Hide headers'">Show headers</small>
-            </summary>
-            <pre><code class="language-http">cache-control: no-cache, private
-content-type: application/json
-access-control-allow-origin: *
- </code></pre></details>         <pre>
+                <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Unauthenticated.&quot;
+    &quot;data&quot;: {
+        &quot;type&quot;: &quot;gif&quot;,
+        &quot;id&quot;: &quot;3o7527pa7qs9kCG78A&quot;,
+        &quot;url&quot;: &quot;https://giphy.com/gifs/nehumanesociety-funny-dog-3o7527pa7qs9kCG78A&quot;,
+        &quot;slug&quot;: &quot;nehumanesociety-funny-dog-3o7527pa7qs9kCG78A&quot;,
+        &quot;title&quot;: &quot;What Is It Reaction GIF by Nebraska Humane Society&quot;,
+        &quot;is_sticker&quot;: 0,
+        &quot;images&quot;: {
+            &quot;original&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;size&quot;: &quot;2789736&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy.gif&amp;ct=g&quot;,
+                &quot;mp4_size&quot;: &quot;352829&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy.mp4&amp;ct=g&quot;,
+                &quot;webp_size&quot;: &quot;494382&quot;,
+                &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy.webp&amp;ct=g&quot;,
+                &quot;frames&quot;: &quot;48&quot;,
+                &quot;hash&quot;: &quot;d1326125030ebdcb85f94ce833acb8f2&quot;
+            },
+            &quot;downsized&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;size&quot;: &quot;1810432&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy-downsized.gif&amp;ct=g&quot;
+            },
+            &quot;downsized_large&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;size&quot;: &quot;2789736&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy.gif&amp;ct=g&quot;
+            },
+            &quot;downsized_medium&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;size&quot;: &quot;2789736&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy.gif&amp;ct=g&quot;
+            },
+            &quot;downsized_small&quot;: {
+                &quot;height&quot;: &quot;360&quot;,
+                &quot;width&quot;: &quot;360&quot;,
+                &quot;mp4_size&quot;: &quot;102077&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized-small.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy-downsized-small.mp4&amp;ct=g&quot;
+            },
+            &quot;downsized_still&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;size&quot;: &quot;37517&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy-downsized_s.gif&amp;ct=g&quot;
+            },
+            &quot;fixed_height&quot;: {
+                &quot;height&quot;: &quot;200&quot;,
+                &quot;width&quot;: &quot;200&quot;,
+                &quot;size&quot;: &quot;539105&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200.gif&amp;ct=g&quot;,
+                &quot;mp4_size&quot;: &quot;78904&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200.mp4&amp;ct=g&quot;,
+                &quot;webp_size&quot;: &quot;198818&quot;,
+                &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200.webp&amp;ct=g&quot;
+            },
+            &quot;fixed_height_downsampled&quot;: {
+                &quot;height&quot;: &quot;200&quot;,
+                &quot;width&quot;: &quot;200&quot;,
+                &quot;size&quot;: &quot;73493&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200_d.gif&amp;ct=g&quot;,
+                &quot;webp_size&quot;: &quot;44672&quot;,
+                &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200_d.webp&amp;ct=g&quot;
+            },
+            &quot;fixed_height_small&quot;: {
+                &quot;height&quot;: &quot;100&quot;,
+                &quot;width&quot;: &quot;100&quot;,
+                &quot;size&quot;: &quot;195611&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100.gif&amp;ct=g&quot;,
+                &quot;mp4_size&quot;: &quot;32643&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100.mp4&amp;ct=g&quot;,
+                &quot;webp_size&quot;: &quot;96772&quot;,
+                &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100.webp&amp;ct=g&quot;
+            },
+            &quot;fixed_height_small_still&quot;: {
+                &quot;height&quot;: &quot;100&quot;,
+                &quot;width&quot;: &quot;100&quot;,
+                &quot;size&quot;: &quot;4793&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100_s.gif&amp;ct=g&quot;
+            },
+            &quot;fixed_height_still&quot;: {
+                &quot;height&quot;: &quot;200&quot;,
+                &quot;width&quot;: &quot;200&quot;,
+                &quot;size&quot;: &quot;11618&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200_s.gif&amp;ct=g&quot;
+            },
+            &quot;fixed_width&quot;: {
+                &quot;height&quot;: &quot;200&quot;,
+                &quot;width&quot;: &quot;200&quot;,
+                &quot;size&quot;: &quot;539105&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200w.gif&amp;ct=g&quot;,
+                &quot;mp4_size&quot;: &quot;78904&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200w.mp4&amp;ct=g&quot;,
+                &quot;webp_size&quot;: &quot;198818&quot;,
+                &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200w.webp&amp;ct=g&quot;
+            },
+            &quot;fixed_width_downsampled&quot;: {
+                &quot;height&quot;: &quot;200&quot;,
+                &quot;width&quot;: &quot;200&quot;,
+                &quot;size&quot;: &quot;73493&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200w_d.gif&amp;ct=g&quot;,
+                &quot;webp_size&quot;: &quot;44672&quot;,
+                &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200w_d.webp&amp;ct=g&quot;
+            },
+            &quot;fixed_width_small&quot;: {
+                &quot;height&quot;: &quot;100&quot;,
+                &quot;width&quot;: &quot;100&quot;,
+                &quot;size&quot;: &quot;195611&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100w.gif&amp;ct=g&quot;,
+                &quot;mp4_size&quot;: &quot;32643&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100w.mp4&amp;ct=g&quot;,
+                &quot;webp_size&quot;: &quot;96772&quot;,
+                &quot;webp&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100w.webp&amp;ct=g&quot;
+            },
+            &quot;fixed_width_small_still&quot;: {
+                &quot;height&quot;: &quot;100&quot;,
+                &quot;width&quot;: &quot;100&quot;,
+                &quot;size&quot;: &quot;4793&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=100w_s.gif&amp;ct=g&quot;
+            },
+            &quot;fixed_width_still&quot;: {
+                &quot;height&quot;: &quot;200&quot;,
+                &quot;width&quot;: &quot;200&quot;,
+                &quot;size&quot;: &quot;11618&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=200w_s.gif&amp;ct=g&quot;
+            },
+            &quot;looping&quot;: {
+                &quot;mp4_size&quot;: &quot;1536445&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-loop.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy-loop.mp4&amp;ct=g&quot;
+            },
+            &quot;original_still&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;size&quot;: &quot;58463&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy_s.gif&amp;ct=g&quot;
+            },
+            &quot;original_mp4&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;mp4_size&quot;: &quot;352829&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy.mp4&amp;ct=g&quot;
+            },
+            &quot;preview&quot;: {
+                &quot;height&quot;: &quot;320&quot;,
+                &quot;width&quot;: &quot;320&quot;,
+                &quot;mp4_size&quot;: &quot;37843&quot;,
+                &quot;mp4&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy-preview.mp4&amp;ct=g&quot;
+            },
+            &quot;preview_gif&quot;: {
+                &quot;height&quot;: &quot;126&quot;,
+                &quot;width&quot;: &quot;126&quot;,
+                &quot;size&quot;: &quot;48475&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy-preview.gif&amp;ct=g&quot;
+            },
+            &quot;preview_webp&quot;: {
+                &quot;height&quot;: &quot;224&quot;,
+                &quot;width&quot;: &quot;224&quot;,
+                &quot;size&quot;: &quot;47558&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=giphy-preview.webp&amp;ct=g&quot;
+            },
+            &quot;480w_still&quot;: {
+                &quot;height&quot;: &quot;480&quot;,
+                &quot;width&quot;: &quot;480&quot;,
+                &quot;size&quot;: &quot;2789736&quot;,
+                &quot;url&quot;: &quot;https://media2.giphy.com/media/3o7527pa7qs9kCG78A/480w_s.jpg?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&amp;ep=v1_gifs_gifId&amp;rid=480w_s.jpg&amp;ct=g&quot;
+            }
+        },
+        &quot;alt_text&quot;: &quot;Video gif. A black and white pitbull terrier leans back with its tongue hanging out then tilts its head down to the side with a perplexed look. Text, \&quot;What?\&quot;&quot;
+    },
+    &quot;meta&quot;: {
+        &quot;type&quot;: null,
+        &quot;id&quot;: null,
+        &quot;url&quot;: null,
+        &quot;slug&quot;: null,
+        &quot;title&quot;: null,
+        &quot;is_sticker&quot;: null,
+        &quot;images&quot;: null,
+        &quot;alt_text&quot;: null
+    }
 }</code>
  </pre>
     </span>
@@ -623,10 +1105,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-giphy--id--id"
-               value="corrupti"
+               value="expedita"
                data-component="url">
     <br>
-<p>The ID of the giphy. Example: <code>corrupti</code></p>
+<p>The ID of the giphy. Example: <code>expedita</code></p>
             </div>
                     </form>
 

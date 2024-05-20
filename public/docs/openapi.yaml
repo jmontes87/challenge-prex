@@ -9,11 +9,31 @@ servers:
 paths:
   /api/user/login:
     post:
-      summary: ''
-      operationId: postApiUserLogin
+      summary: 'Handle the user login request.'
+      operationId: handleTheUserLoginRequest
       description: ''
       parameters: []
-      responses: {  }
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data:
+                    token: HASH_TOKEN
+                    expires_at: '2024-11-20 14:20:28'
+                properties:
+                  data:
+                    type: object
+                    properties:
+                      token:
+                        type: string
+                        example: HASH_TOKEN
+                      expires_at:
+                        type: string
+                        example: '2024-11-20 14:20:28'
       tags:
         - Endpoints
       requestBody:
@@ -25,12 +45,12 @@ paths:
               properties:
                 email:
                   type: string
-                  description: 'Must be a valid email address.'
-                  example: lorenzo.volkman@example.net
+                  description: 'The email address of the user. Must be a valid email address.'
+                  example: john@example.com
                 password:
                   type: string
-                  description: ''
-                  example: vel
+                  description: 'The password of the user.'
+                  example: secret
               required:
                 - email
                 - password
@@ -42,18 +62,872 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    -
+                      type: gif
+                      id: Fu3OjBQiCs3s0ZuLY3
+                      url: 'https://giphy.com/gifs/moodman-reaction-Fu3OjBQiCs3s0ZuLY3'
+                      slug: moodman-reaction-Fu3OjBQiCs3s0ZuLY3
+                      title: 'Dog Smile GIF by MOODMAN'
+                      is_sticker: 0
+                      images:
+                        original:
+                          height: '356'
+                          width: '200'
+                          size: '6229447'
+                          url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.gif&ct=g'
+                          mp4_size: '10123487'
+                          mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.mp4&ct=g'
+                          webp_size: '3273720'
+                          webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.webp&ct=g'
+                          frames: '225'
+                          hash: 4f9bc197210d75302db460e6f1e51651
+                        fixed_height:
+                          height: '200'
+                          width: '112'
+                          size: '2718689'
+                          url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.gif&ct=g'
+                          mp4_size: '357336'
+                          mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.mp4&ct=g'
+                          webp_size: '938578'
+                          webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.webp&ct=g'
+                        fixed_height_downsampled:
+                          height: '200'
+                          width: '112'
+                          size: '75959'
+                          url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.gif&ct=g'
+                          webp_size: '39406'
+                          webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.webp&ct=g'
+                        fixed_height_small:
+                          height: '100'
+                          width: '56'
+                          size: '823081'
+                          url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.gif&ct=g'
+                          mp4_size: '125145'
+                          mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.mp4&ct=g'
+                          webp_size: '404724'
+                          webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.webp&ct=g'
+                        fixed_width:
+                          height: '356'
+                          width: '200'
+                          size: '5373936'
+                          url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.gif&ct=g'
+                          mp4_size: '1504383'
+                          mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.mp4&ct=g'
+                          webp_size: '3285966'
+                          webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.webp&ct=g'
+                        fixed_width_downsampled:
+                          height: '356'
+                          width: '200'
+                          size: '185594'
+                          url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.gif&ct=g'
+                          webp_size: '115364'
+                          webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.webp&ct=g'
+                        fixed_width_small:
+                          height: '178'
+                          width: '100'
+                          size: '2173841'
+                          url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.gif&ct=g'
+                          mp4_size: '43180'
+                          mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.mp4&ct=g'
+                          webp_size: '826244'
+                          webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.webp&ct=g'
+                      alt_text: 'Video gif. A close-up of a white dog with sprigs of tiny flowers on its head as it appears to smile with squinty eyes and teeth bared. '
+                    -
+                      type: gif
+                      id: 3o7527pa7qs9kCG78A
+                      url: 'https://giphy.com/gifs/nehumanesociety-funny-dog-3o7527pa7qs9kCG78A'
+                      slug: nehumanesociety-funny-dog-3o7527pa7qs9kCG78A
+                      title: 'What Is It Reaction GIF by Nebraska Humane Society'
+                      is_sticker: 0
+                      images:
+                        original:
+                          height: '480'
+                          width: '480'
+                          size: '2789736'
+                          url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.gif&ct=g'
+                          mp4_size: '352829'
+                          mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.mp4&ct=g'
+                          webp_size: '494382'
+                          webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.webp&ct=g'
+                          frames: '48'
+                          hash: d1326125030ebdcb85f94ce833acb8f2
+                        fixed_height:
+                          height: '200'
+                          width: '200'
+                          size: '539105'
+                          url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.gif&ct=g'
+                          mp4_size: '78904'
+                          mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.mp4&ct=g'
+                          webp_size: '198818'
+                          webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.webp&ct=g'
+                        fixed_height_downsampled:
+                          height: '200'
+                          width: '200'
+                          size: '73493'
+                          url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.gif&ct=g'
+                          webp_size: '44672'
+                          webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.webp&ct=g'
+                        fixed_height_small:
+                          height: '100'
+                          width: '100'
+                          size: '195611'
+                          url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.gif&ct=g'
+                          mp4_size: '32643'
+                          mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.mp4&ct=g'
+                          webp_size: '96772'
+                          webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.webp&ct=g'
+                        fixed_width:
+                          height: '200'
+                          width: '200'
+                          size: '539105'
+                          url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.gif&ct=g'
+                          mp4_size: '78904'
+                          mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.mp4&ct=g'
+                          webp_size: '198818'
+                          webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.webp&ct=g'
+                        fixed_width_downsampled:
+                          height: '200'
+                          width: '200'
+                          size: '73493'
+                          url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.gif&ct=g'
+                          webp_size: '44672'
+                          webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.webp&ct=g'
+                        fixed_width_small:
+                          height: '100'
+                          width: '100'
+                          size: '195611'
+                          url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.gif&ct=g'
+                          mp4_size: '32643'
+                          mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.mp4&ct=g'
+                          webp_size: '96772'
+                          webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.webp&ct=g'
+                      alt_text: 'Video gif. A black and white pitbull terrier leans back with its tongue hanging out then tilts its head down to the side with a perplexed look. Text, "What?"'
+                    -
+                      type: gif
+                      id: gKHGnB1ml0moQdjhEJ
+                      url: 'https://giphy.com/gifs/moodman-reaction-dog-zoom-gKHGnB1ml0moQdjhEJ'
+                      slug: moodman-reaction-dog-zoom-gKHGnB1ml0moQdjhEJ
+                      title: 'Confused Dog GIF by MOODMAN'
+                      is_sticker: 0
+                      images:
+                        original:
+                          height: '406'
+                          width: '480'
+                          size: '1594135'
+                          url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.gif&ct=g'
+                          mp4_size: '112515'
+                          mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.mp4&ct=g'
+                          webp_size: '237244'
+                          webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.webp&ct=g'
+                          frames: '29'
+                          hash: dee77f6b73217a5a9ac650d776423a1c
+                        fixed_height:
+                          height: '200'
+                          width: '236'
+                          size: '388642'
+                          url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.gif&ct=g'
+                          mp4_size: '39650'
+                          mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.mp4&ct=g'
+                          webp_size: '108988'
+                          webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.webp&ct=g'
+                        fixed_height_downsampled:
+                          height: '200'
+                          width: '236'
+                          size: '105764'
+                          url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.gif&ct=g'
+                          webp_size: '46902'
+                          webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.webp&ct=g'
+                        fixed_height_small:
+                          height: '100'
+                          width: '118'
+                          size: '137927'
+                          url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.gif&ct=g'
+                          mp4_size: '20417'
+                          mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.mp4&ct=g'
+                          webp_size: '55222'
+                          webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.webp&ct=g'
+                        fixed_width:
+                          height: '169'
+                          width: '200'
+                          size: '320424'
+                          url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.gif&ct=g'
+                          mp4_size: '32849'
+                          mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.mp4&ct=g'
+                          webp_size: '92446'
+                          webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.webp&ct=g'
+                        fixed_width_downsampled:
+                          height: '169'
+                          width: '200'
+                          size: '70948'
+                          url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.gif&ct=g'
+                          webp_size: '37140'
+                          webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.webp&ct=g'
+                        fixed_width_small:
+                          height: '85'
+                          width: '100'
+                          size: '110923'
+                          url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.gif&ct=g'
+                          mp4_size: '17804'
+                          mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.mp4&ct=g'
+                          webp_size: '46454'
+                          webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.webp&ct=g'
+                      alt_text: ''
+                  meta:
+                    status:
+                      type: null
+                      id: null
+                      url: null
+                      slug: null
+                      title: null
+                      is_sticker: null
+                      images: null
+                      alt_text: null
+                    msg:
+                      type: null
+                      id: null
+                      url: null
+                      slug: null
+                      title: null
+                      is_sticker: null
+                      images: null
+                      alt_text: null
+                    response_id:
+                      type: null
+                      id: null
+                      url: null
+                      slug: null
+                      title: null
+                      is_sticker: null
+                      images: null
+                      alt_text: null
+                  pagination:
+                    total_count:
+                      type: null
+                      id: null
+                      url: null
+                      slug: null
+                      title: null
+                      is_sticker: null
+                      images: null
+                      alt_text: null
+                    count:
+                      type: null
+                      id: null
+                      url: null
+                      slug: null
+                      title: null
+                      is_sticker: null
+                      images: null
+                      alt_text: null
+                    offset:
+                      type: null
+                      id: null
+                      url: null
+                      slug: null
+                      title: null
+                      is_sticker: null
+                      images: null
+                      alt_text: null
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: array
+                    example:
+                      -
+                        type: gif
+                        id: Fu3OjBQiCs3s0ZuLY3
+                        url: 'https://giphy.com/gifs/moodman-reaction-Fu3OjBQiCs3s0ZuLY3'
+                        slug: moodman-reaction-Fu3OjBQiCs3s0ZuLY3
+                        title: 'Dog Smile GIF by MOODMAN'
+                        is_sticker: 0
+                        images:
+                          original:
+                            height: '356'
+                            width: '200'
+                            size: '6229447'
+                            url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.gif&ct=g'
+                            mp4_size: '10123487'
+                            mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.mp4&ct=g'
+                            webp_size: '3273720'
+                            webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.webp&ct=g'
+                            frames: '225'
+                            hash: 4f9bc197210d75302db460e6f1e51651
+                          fixed_height:
+                            height: '200'
+                            width: '112'
+                            size: '2718689'
+                            url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.gif&ct=g'
+                            mp4_size: '357336'
+                            mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.mp4&ct=g'
+                            webp_size: '938578'
+                            webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.webp&ct=g'
+                          fixed_height_downsampled:
+                            height: '200'
+                            width: '112'
+                            size: '75959'
+                            url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.gif&ct=g'
+                            webp_size: '39406'
+                            webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.webp&ct=g'
+                          fixed_height_small:
+                            height: '100'
+                            width: '56'
+                            size: '823081'
+                            url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.gif&ct=g'
+                            mp4_size: '125145'
+                            mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.mp4&ct=g'
+                            webp_size: '404724'
+                            webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.webp&ct=g'
+                          fixed_width:
+                            height: '356'
+                            width: '200'
+                            size: '5373936'
+                            url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.gif&ct=g'
+                            mp4_size: '1504383'
+                            mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.mp4&ct=g'
+                            webp_size: '3285966'
+                            webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.webp&ct=g'
+                          fixed_width_downsampled:
+                            height: '356'
+                            width: '200'
+                            size: '185594'
+                            url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.gif&ct=g'
+                            webp_size: '115364'
+                            webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.webp&ct=g'
+                          fixed_width_small:
+                            height: '178'
+                            width: '100'
+                            size: '2173841'
+                            url: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.gif&ct=g'
+                            mp4_size: '43180'
+                            mp4: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.mp4&ct=g'
+                            webp_size: '826244'
+                            webp: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.webp&ct=g'
+                        alt_text: 'Video gif. A close-up of a white dog with sprigs of tiny flowers on its head as it appears to smile with squinty eyes and teeth bared. '
+                      -
+                        type: gif
+                        id: 3o7527pa7qs9kCG78A
+                        url: 'https://giphy.com/gifs/nehumanesociety-funny-dog-3o7527pa7qs9kCG78A'
+                        slug: nehumanesociety-funny-dog-3o7527pa7qs9kCG78A
+                        title: 'What Is It Reaction GIF by Nebraska Humane Society'
+                        is_sticker: 0
+                        images:
+                          original:
+                            height: '480'
+                            width: '480'
+                            size: '2789736'
+                            url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.gif&ct=g'
+                            mp4_size: '352829'
+                            mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.mp4&ct=g'
+                            webp_size: '494382'
+                            webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.webp&ct=g'
+                            frames: '48'
+                            hash: d1326125030ebdcb85f94ce833acb8f2
+                          fixed_height:
+                            height: '200'
+                            width: '200'
+                            size: '539105'
+                            url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.gif&ct=g'
+                            mp4_size: '78904'
+                            mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.mp4&ct=g'
+                            webp_size: '198818'
+                            webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.webp&ct=g'
+                          fixed_height_downsampled:
+                            height: '200'
+                            width: '200'
+                            size: '73493'
+                            url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.gif&ct=g'
+                            webp_size: '44672'
+                            webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.webp&ct=g'
+                          fixed_height_small:
+                            height: '100'
+                            width: '100'
+                            size: '195611'
+                            url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.gif&ct=g'
+                            mp4_size: '32643'
+                            mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.mp4&ct=g'
+                            webp_size: '96772'
+                            webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.webp&ct=g'
+                          fixed_width:
+                            height: '200'
+                            width: '200'
+                            size: '539105'
+                            url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.gif&ct=g'
+                            mp4_size: '78904'
+                            mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.mp4&ct=g'
+                            webp_size: '198818'
+                            webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.webp&ct=g'
+                          fixed_width_downsampled:
+                            height: '200'
+                            width: '200'
+                            size: '73493'
+                            url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.gif&ct=g'
+                            webp_size: '44672'
+                            webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.webp&ct=g'
+                          fixed_width_small:
+                            height: '100'
+                            width: '100'
+                            size: '195611'
+                            url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.gif&ct=g'
+                            mp4_size: '32643'
+                            mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.mp4&ct=g'
+                            webp_size: '96772'
+                            webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.webp&ct=g'
+                        alt_text: 'Video gif. A black and white pitbull terrier leans back with its tongue hanging out then tilts its head down to the side with a perplexed look. Text, "What?"'
+                      -
+                        type: gif
+                        id: gKHGnB1ml0moQdjhEJ
+                        url: 'https://giphy.com/gifs/moodman-reaction-dog-zoom-gKHGnB1ml0moQdjhEJ'
+                        slug: moodman-reaction-dog-zoom-gKHGnB1ml0moQdjhEJ
+                        title: 'Confused Dog GIF by MOODMAN'
+                        is_sticker: 0
+                        images:
+                          original:
+                            height: '406'
+                            width: '480'
+                            size: '1594135'
+                            url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.gif&ct=g'
+                            mp4_size: '112515'
+                            mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.mp4&ct=g'
+                            webp_size: '237244'
+                            webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.webp&ct=g'
+                            frames: '29'
+                            hash: dee77f6b73217a5a9ac650d776423a1c
+                          fixed_height:
+                            height: '200'
+                            width: '236'
+                            size: '388642'
+                            url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.gif&ct=g'
+                            mp4_size: '39650'
+                            mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.mp4&ct=g'
+                            webp_size: '108988'
+                            webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.webp&ct=g'
+                          fixed_height_downsampled:
+                            height: '200'
+                            width: '236'
+                            size: '105764'
+                            url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.gif&ct=g'
+                            webp_size: '46902'
+                            webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.webp&ct=g'
+                          fixed_height_small:
+                            height: '100'
+                            width: '118'
+                            size: '137927'
+                            url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.gif&ct=g'
+                            mp4_size: '20417'
+                            mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.mp4&ct=g'
+                            webp_size: '55222'
+                            webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.webp&ct=g'
+                          fixed_width:
+                            height: '169'
+                            width: '200'
+                            size: '320424'
+                            url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.gif&ct=g'
+                            mp4_size: '32849'
+                            mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.mp4&ct=g'
+                            webp_size: '92446'
+                            webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.webp&ct=g'
+                          fixed_width_downsampled:
+                            height: '169'
+                            width: '200'
+                            size: '70948'
+                            url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.gif&ct=g'
+                            webp_size: '37140'
+                            webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.webp&ct=g'
+                          fixed_width_small:
+                            height: '85'
+                            width: '100'
+                            size: '110923'
+                            url: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.gif&ct=g'
+                            mp4_size: '17804'
+                            mp4: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.mp4&ct=g'
+                            webp_size: '46454'
+                            webp: 'https://media4.giphy.com/media/gKHGnB1ml0moQdjhEJ/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.webp&ct=g'
+                        alt_text: ''
+                    items:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          example: gif
+                        id:
+                          type: string
+                          example: Fu3OjBQiCs3s0ZuLY3
+                        url:
+                          type: string
+                          example: 'https://giphy.com/gifs/moodman-reaction-Fu3OjBQiCs3s0ZuLY3'
+                        slug:
+                          type: string
+                          example: moodman-reaction-Fu3OjBQiCs3s0ZuLY3
+                        title:
+                          type: string
+                          example: 'Dog Smile GIF by MOODMAN'
+                        is_sticker:
+                          type: integer
+                          example: 0
+                        images:
+                          type: object
+                          properties:
+                            original:
+                              type: object
+                              properties:
+                                height:
+                                  type: string
+                                  example: '356'
+                                width:
+                                  type: string
+                                  example: '200'
+                                size:
+                                  type: string
+                                  example: '6229447'
+                                url:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.gif&ct=g'
+                                mp4_size:
+                                  type: string
+                                  example: '10123487'
+                                mp4:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.mp4&ct=g'
+                                webp_size:
+                                  type: string
+                                  example: '3273720'
+                                webp:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/giphy.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=giphy.webp&ct=g'
+                                frames:
+                                  type: string
+                                  example: '225'
+                                hash:
+                                  type: string
+                                  example: 4f9bc197210d75302db460e6f1e51651
+                            fixed_height:
+                              type: object
+                              properties:
+                                height:
+                                  type: string
+                                  example: '200'
+                                width:
+                                  type: string
+                                  example: '112'
+                                size:
+                                  type: string
+                                  example: '2718689'
+                                url:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.gif&ct=g'
+                                mp4_size:
+                                  type: string
+                                  example: '357336'
+                                mp4:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.mp4&ct=g'
+                                webp_size:
+                                  type: string
+                                  example: '938578'
+                                webp:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200.webp&ct=g'
+                            fixed_height_downsampled:
+                              type: object
+                              properties:
+                                height:
+                                  type: string
+                                  example: '200'
+                                width:
+                                  type: string
+                                  example: '112'
+                                size:
+                                  type: string
+                                  example: '75959'
+                                url:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.gif&ct=g'
+                                webp_size:
+                                  type: string
+                                  example: '39406'
+                                webp:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200_d.webp&ct=g'
+                            fixed_height_small:
+                              type: object
+                              properties:
+                                height:
+                                  type: string
+                                  example: '100'
+                                width:
+                                  type: string
+                                  example: '56'
+                                size:
+                                  type: string
+                                  example: '823081'
+                                url:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.gif&ct=g'
+                                mp4_size:
+                                  type: string
+                                  example: '125145'
+                                mp4:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.mp4&ct=g'
+                                webp_size:
+                                  type: string
+                                  example: '404724'
+                                webp:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100.webp&ct=g'
+                            fixed_width:
+                              type: object
+                              properties:
+                                height:
+                                  type: string
+                                  example: '356'
+                                width:
+                                  type: string
+                                  example: '200'
+                                size:
+                                  type: string
+                                  example: '5373936'
+                                url:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.gif&ct=g'
+                                mp4_size:
+                                  type: string
+                                  example: '1504383'
+                                mp4:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.mp4&ct=g'
+                                webp_size:
+                                  type: string
+                                  example: '3285966'
+                                webp:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w.webp&ct=g'
+                            fixed_width_downsampled:
+                              type: object
+                              properties:
+                                height:
+                                  type: string
+                                  example: '356'
+                                width:
+                                  type: string
+                                  example: '200'
+                                size:
+                                  type: string
+                                  example: '185594'
+                                url:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.gif&ct=g'
+                                webp_size:
+                                  type: string
+                                  example: '115364'
+                                webp:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/200w_d.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=200w_d.webp&ct=g'
+                            fixed_width_small:
+                              type: object
+                              properties:
+                                height:
+                                  type: string
+                                  example: '178'
+                                width:
+                                  type: string
+                                  example: '100'
+                                size:
+                                  type: string
+                                  example: '2173841'
+                                url:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.gif?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.gif&ct=g'
+                                mp4_size:
+                                  type: string
+                                  example: '43180'
+                                mp4:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.mp4?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.mp4&ct=g'
+                                webp_size:
+                                  type: string
+                                  example: '826244'
+                                webp:
+                                  type: string
+                                  example: 'https://media3.giphy.com/media/Fu3OjBQiCs3s0ZuLY3/100w.webp?cid=bcba9ff9ddsl6slby7f24j9fjdqo0s5tj0gvhpwxyt4g3ev9&ep=v1_gifs_search&rid=100w.webp&ct=g'
+                        alt_text:
+                          type: string
+                          example: 'Video gif. A close-up of a white dog with sprigs of tiny flowers on its head as it appears to smile with squinty eyes and teeth bared. '
+                  meta:
+                    type: object
+                    properties:
+                      status:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: null
+                          id:
+                            type: string
+                            example: null
+                          url:
+                            type: string
+                            example: null
+                          slug:
+                            type: string
+                            example: null
+                          title:
+                            type: string
+                            example: null
+                          is_sticker:
+                            type: string
+                            example: null
+                          images:
+                            type: string
+                            example: null
+                          alt_text:
+                            type: string
+                            example: null
+                      msg:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: null
+                          id:
+                            type: string
+                            example: null
+                          url:
+                            type: string
+                            example: null
+                          slug:
+                            type: string
+                            example: null
+                          title:
+                            type: string
+                            example: null
+                          is_sticker:
+                            type: string
+                            example: null
+                          images:
+                            type: string
+                            example: null
+                          alt_text:
+                            type: string
+                            example: null
+                      response_id:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: null
+                          id:
+                            type: string
+                            example: null
+                          url:
+                            type: string
+                            example: null
+                          slug:
+                            type: string
+                            example: null
+                          title:
+                            type: string
+                            example: null
+                          is_sticker:
+                            type: string
+                            example: null
+                          images:
+                            type: string
+                            example: null
+                          alt_text:
+                            type: string
+                            example: null
+                  pagination:
+                    type: object
+                    properties:
+                      total_count:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: null
+                          id:
+                            type: string
+                            example: null
+                          url:
+                            type: string
+                            example: null
+                          slug:
+                            type: string
+                            example: null
+                          title:
+                            type: string
+                            example: null
+                          is_sticker:
+                            type: string
+                            example: null
+                          images:
+                            type: string
+                            example: null
+                          alt_text:
+                            type: string
+                            example: null
+                      count:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: null
+                          id:
+                            type: string
+                            example: null
+                          url:
+                            type: string
+                            example: null
+                          slug:
+                            type: string
+                            example: null
+                          title:
+                            type: string
+                            example: null
+                          is_sticker:
+                            type: string
+                            example: null
+                          images:
+                            type: string
+                            example: null
+                          alt_text:
+                            type: string
+                            example: null
+                      offset:
+                        type: object
+                        properties:
+                          type:
+                            type: string
+                            example: null
+                          id:
+                            type: string
+                            example: null
+                          url:
+                            type: string
+                            example: null
+                          slug:
+                            type: string
+                            example: null
+                          title:
+                            type: string
+                            example: null
+                          is_sticker:
+                            type: string
+                            example: null
+                          images:
+                            type: string
+                            example: null
+                          alt_text:
+                            type: string
+                            example: null
       tags:
         - Endpoints
       requestBody:
@@ -65,16 +939,16 @@ paths:
               properties:
                 query:
                   type: string
-                  description: ''
-                  example: illo
+                  description: 'The search query for GIFs.'
+                  example: 'cute cats'
                 limit:
                   type: integer
-                  description: ''
-                  example: 14
+                  description: 'The maximum number of results to be returned.'
+                  example: 10
                 offset:
                   type: integer
-                  description: ''
-                  example: 12
+                  description: 'The offset of search results.'
+                  example: 0
               required:
                 - query
       security: []
@@ -94,18 +968,642 @@ paths:
       description: ''
       parameters: []
       responses:
-        401:
+        200:
           description: ''
           content:
             application/json:
               schema:
                 type: object
                 example:
-                  message: Unauthenticated.
+                  data:
+                    type: gif
+                    id: 3o7527pa7qs9kCG78A
+                    url: 'https://giphy.com/gifs/nehumanesociety-funny-dog-3o7527pa7qs9kCG78A'
+                    slug: nehumanesociety-funny-dog-3o7527pa7qs9kCG78A
+                    title: 'What Is It Reaction GIF by Nebraska Humane Society'
+                    is_sticker: 0
+                    images:
+                      original:
+                        height: '480'
+                        width: '480'
+                        size: '2789736'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.gif&ct=g'
+                        mp4_size: '352829'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.mp4&ct=g'
+                        webp_size: '494382'
+                        webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.webp&ct=g'
+                        frames: '48'
+                        hash: d1326125030ebdcb85f94ce833acb8f2
+                      downsized:
+                        height: '480'
+                        width: '480'
+                        size: '1810432'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-downsized.gif&ct=g'
+                      downsized_large:
+                        height: '480'
+                        width: '480'
+                        size: '2789736'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.gif&ct=g'
+                      downsized_medium:
+                        height: '480'
+                        width: '480'
+                        size: '2789736'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.gif&ct=g'
+                      downsized_small:
+                        height: '360'
+                        width: '360'
+                        mp4_size: '102077'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized-small.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-downsized-small.mp4&ct=g'
+                      downsized_still:
+                        height: '480'
+                        width: '480'
+                        size: '37517'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-downsized_s.gif&ct=g'
+                      fixed_height:
+                        height: '200'
+                        width: '200'
+                        size: '539105'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200.gif&ct=g'
+                        mp4_size: '78904'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200.mp4&ct=g'
+                        webp_size: '198818'
+                        webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200.webp&ct=g'
+                      fixed_height_downsampled:
+                        height: '200'
+                        width: '200'
+                        size: '73493'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200_d.gif&ct=g'
+                        webp_size: '44672'
+                        webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200_d.webp&ct=g'
+                      fixed_height_small:
+                        height: '100'
+                        width: '100'
+                        size: '195611'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100.gif&ct=g'
+                        mp4_size: '32643'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100.mp4&ct=g'
+                        webp_size: '96772'
+                        webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100.webp&ct=g'
+                      fixed_height_small_still:
+                        height: '100'
+                        width: '100'
+                        size: '4793'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100_s.gif&ct=g'
+                      fixed_height_still:
+                        height: '200'
+                        width: '200'
+                        size: '11618'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200_s.gif&ct=g'
+                      fixed_width:
+                        height: '200'
+                        width: '200'
+                        size: '539105'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w.gif&ct=g'
+                        mp4_size: '78904'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w.mp4&ct=g'
+                        webp_size: '198818'
+                        webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w.webp&ct=g'
+                      fixed_width_downsampled:
+                        height: '200'
+                        width: '200'
+                        size: '73493'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w_d.gif&ct=g'
+                        webp_size: '44672'
+                        webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w_d.webp&ct=g'
+                      fixed_width_small:
+                        height: '100'
+                        width: '100'
+                        size: '195611'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w.gif&ct=g'
+                        mp4_size: '32643'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w.mp4&ct=g'
+                        webp_size: '96772'
+                        webp: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w.webp&ct=g'
+                      fixed_width_small_still:
+                        height: '100'
+                        width: '100'
+                        size: '4793'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w_s.gif&ct=g'
+                      fixed_width_still:
+                        height: '200'
+                        width: '200'
+                        size: '11618'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w_s.gif&ct=g'
+                      looping:
+                        mp4_size: '1536445'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-loop.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-loop.mp4&ct=g'
+                      original_still:
+                        height: '480'
+                        width: '480'
+                        size: '58463'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy_s.gif&ct=g'
+                      original_mp4:
+                        height: '480'
+                        width: '480'
+                        mp4_size: '352829'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.mp4&ct=g'
+                      preview:
+                        height: '320'
+                        width: '320'
+                        mp4_size: '37843'
+                        mp4: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-preview.mp4&ct=g'
+                      preview_gif:
+                        height: '126'
+                        width: '126'
+                        size: '48475'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-preview.gif&ct=g'
+                      preview_webp:
+                        height: '224'
+                        width: '224'
+                        size: '47558'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-preview.webp&ct=g'
+                      480w_still:
+                        height: '480'
+                        width: '480'
+                        size: '2789736'
+                        url: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/480w_s.jpg?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=480w_s.jpg&ct=g'
+                    alt_text: 'Video gif. A black and white pitbull terrier leans back with its tongue hanging out then tilts its head down to the side with a perplexed look. Text, "What?"'
+                  meta:
+                    type: null
+                    id: null
+                    url: null
+                    slug: null
+                    title: null
+                    is_sticker: null
+                    images: null
+                    alt_text: null
                 properties:
-                  message:
-                    type: string
-                    example: Unauthenticated.
+                  data:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: gif
+                      id:
+                        type: string
+                        example: 3o7527pa7qs9kCG78A
+                      url:
+                        type: string
+                        example: 'https://giphy.com/gifs/nehumanesociety-funny-dog-3o7527pa7qs9kCG78A'
+                      slug:
+                        type: string
+                        example: nehumanesociety-funny-dog-3o7527pa7qs9kCG78A
+                      title:
+                        type: string
+                        example: 'What Is It Reaction GIF by Nebraska Humane Society'
+                      is_sticker:
+                        type: integer
+                        example: 0
+                      images:
+                        type: object
+                        properties:
+                          original:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              size:
+                                type: string
+                                example: '2789736'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.gif&ct=g'
+                              mp4_size:
+                                type: string
+                                example: '352829'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.mp4&ct=g'
+                              webp_size:
+                                type: string
+                                example: '494382'
+                              webp:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.webp&ct=g'
+                              frames:
+                                type: string
+                                example: '48'
+                              hash:
+                                type: string
+                                example: d1326125030ebdcb85f94ce833acb8f2
+                          downsized:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              size:
+                                type: string
+                                example: '1810432'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-downsized.gif&ct=g'
+                          downsized_large:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              size:
+                                type: string
+                                example: '2789736'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.gif&ct=g'
+                          downsized_medium:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              size:
+                                type: string
+                                example: '2789736'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.gif&ct=g'
+                          downsized_small:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '360'
+                              width:
+                                type: string
+                                example: '360'
+                              mp4_size:
+                                type: string
+                                example: '102077'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized-small.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-downsized-small.mp4&ct=g'
+                          downsized_still:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              size:
+                                type: string
+                                example: '37517'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-downsized_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-downsized_s.gif&ct=g'
+                          fixed_height:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '200'
+                              width:
+                                type: string
+                                example: '200'
+                              size:
+                                type: string
+                                example: '539105'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200.gif&ct=g'
+                              mp4_size:
+                                type: string
+                                example: '78904'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200.mp4&ct=g'
+                              webp_size:
+                                type: string
+                                example: '198818'
+                              webp:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200.webp&ct=g'
+                          fixed_height_downsampled:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '200'
+                              width:
+                                type: string
+                                example: '200'
+                              size:
+                                type: string
+                                example: '73493'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200_d.gif&ct=g'
+                              webp_size:
+                                type: string
+                                example: '44672'
+                              webp:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_d.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200_d.webp&ct=g'
+                          fixed_height_small:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '100'
+                              width:
+                                type: string
+                                example: '100'
+                              size:
+                                type: string
+                                example: '195611'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100.gif&ct=g'
+                              mp4_size:
+                                type: string
+                                example: '32643'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100.mp4&ct=g'
+                              webp_size:
+                                type: string
+                                example: '96772'
+                              webp:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100.webp&ct=g'
+                          fixed_height_small_still:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '100'
+                              width:
+                                type: string
+                                example: '100'
+                              size:
+                                type: string
+                                example: '4793'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100_s.gif&ct=g'
+                          fixed_height_still:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '200'
+                              width:
+                                type: string
+                                example: '200'
+                              size:
+                                type: string
+                                example: '11618'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200_s.gif&ct=g'
+                          fixed_width:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '200'
+                              width:
+                                type: string
+                                example: '200'
+                              size:
+                                type: string
+                                example: '539105'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w.gif&ct=g'
+                              mp4_size:
+                                type: string
+                                example: '78904'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w.mp4&ct=g'
+                              webp_size:
+                                type: string
+                                example: '198818'
+                              webp:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w.webp&ct=g'
+                          fixed_width_downsampled:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '200'
+                              width:
+                                type: string
+                                example: '200'
+                              size:
+                                type: string
+                                example: '73493'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w_d.gif&ct=g'
+                              webp_size:
+                                type: string
+                                example: '44672'
+                              webp:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_d.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w_d.webp&ct=g'
+                          fixed_width_small:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '100'
+                              width:
+                                type: string
+                                example: '100'
+                              size:
+                                type: string
+                                example: '195611'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w.gif&ct=g'
+                              mp4_size:
+                                type: string
+                                example: '32643'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w.mp4&ct=g'
+                              webp_size:
+                                type: string
+                                example: '96772'
+                              webp:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w.webp&ct=g'
+                          fixed_width_small_still:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '100'
+                              width:
+                                type: string
+                                example: '100'
+                              size:
+                                type: string
+                                example: '4793'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/100w_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=100w_s.gif&ct=g'
+                          fixed_width_still:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '200'
+                              width:
+                                type: string
+                                example: '200'
+                              size:
+                                type: string
+                                example: '11618'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/200w_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=200w_s.gif&ct=g'
+                          looping:
+                            type: object
+                            properties:
+                              mp4_size:
+                                type: string
+                                example: '1536445'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-loop.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-loop.mp4&ct=g'
+                          original_still:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              size:
+                                type: string
+                                example: '58463'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy_s.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy_s.gif&ct=g'
+                          original_mp4:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              mp4_size:
+                                type: string
+                                example: '352829'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy.mp4&ct=g'
+                          preview:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '320'
+                              width:
+                                type: string
+                                example: '320'
+                              mp4_size:
+                                type: string
+                                example: '37843'
+                              mp4:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.mp4?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-preview.mp4&ct=g'
+                          preview_gif:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '126'
+                              width:
+                                type: string
+                                example: '126'
+                              size:
+                                type: string
+                                example: '48475'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.gif?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-preview.gif&ct=g'
+                          preview_webp:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '224'
+                              width:
+                                type: string
+                                example: '224'
+                              size:
+                                type: string
+                                example: '47558'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/giphy-preview.webp?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=giphy-preview.webp&ct=g'
+                          480w_still:
+                            type: object
+                            properties:
+                              height:
+                                type: string
+                                example: '480'
+                              width:
+                                type: string
+                                example: '480'
+                              size:
+                                type: string
+                                example: '2789736'
+                              url:
+                                type: string
+                                example: 'https://media2.giphy.com/media/3o7527pa7qs9kCG78A/480w_s.jpg?cid=bcba9ff91xh45pzh5312bgogbqhwan0z8wgg36uftdmsucy3&ep=v1_gifs_gifId&rid=480w_s.jpg&ct=g'
+                      alt_text:
+                        type: string
+                        example: 'Video gif. A black and white pitbull terrier leans back with its tongue hanging out then tilts its head down to the side with a perplexed look. Text, "What?"'
+                  meta:
+                    type: object
+                    properties:
+                      type:
+                        type: string
+                        example: null
+                      id:
+                        type: string
+                        example: null
+                      url:
+                        type: string
+                        example: null
+                      slug:
+                        type: string
+                        example: null
+                      title:
+                        type: string
+                        example: null
+                      is_sticker:
+                        type: string
+                        example: null
+                      images:
+                        type: string
+                        example: null
+                      alt_text:
+                        type: string
+                        example: null
       tags:
         - Endpoints
       security: []
@@ -114,7 +1612,7 @@ paths:
         in: path
         name: id
         description: 'The ID of the giphy.'
-        example: corrupti
+        example: expedita
         required: true
         schema:
           type: string
