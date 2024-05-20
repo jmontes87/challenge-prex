@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "Challenge Prex",
-        "_postman_id": "925513d4-f201-40be-846b-1a22c4e757fb",
+        "_postman_id": "63bc111e-9be2-4455-9b22-ed572beb19ce",
         "description": "",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -41,7 +41,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"theresia81@example.com\",\"password\":\"et\"}"
+                            "raw": "{\"email\":\"lorenzo.volkman@example.net\",\"password\":\"vel\"}"
                         },
                         "description": "",
                         "auth": {
@@ -72,7 +72,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"query\":\"vel\",\"limit\":19,\"offset\":16}"
+                            "raw": "{\"query\":\"illo\",\"limit\":14,\"offset\":12}"
                         },
                         "description": "",
                         "auth": {
@@ -113,7 +113,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "non",
+                                    "value": "corrupti",
                                     "description": "The ID of the giphy."
                                 }
                             ]
@@ -237,6 +237,12 @@
         }
     ],
     "auth": {
-        "type": "noauth"
+        "type": "bearer",
+        "bearer": [
+            {
+                "key": "Authorization",
+                "type": "string"
+            }
+        ]
     }
 }

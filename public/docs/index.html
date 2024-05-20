@@ -23,6 +23,7 @@
         /* starts out as display none and is replaced with js later  */
                     body .content .bash-example code { display: none; }
                     body .content .javascript-example code { display: none; }
+                    body .content .php-example code { display: none; }
             </style>
 
     <script>
@@ -36,7 +37,7 @@
 
 </head>
 
-<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;]">
+<body data-languages="[&quot;bash&quot;,&quot;javascript&quot;,&quot;php&quot;]">
 
 <a href="#" id="nav-button">
     <span>
@@ -45,10 +46,12 @@
     </span>
 </a>
 <div class="tocify-wrapper">
+            <img src="../logo_prex.png" alt="logo" class="logo" style="padding-top: 10px;" width="100%"/>
     
             <div class="lang-selector">
                                             <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                             <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                            <button type="button" class="lang-button" data-language-name="php">php</button>
                     </div>
     
     <div class="search">
@@ -113,7 +116,9 @@
 You can switch the language used with the tabs at the top right (or from the nav menu at the top left on mobile).</aside>
 
         <h1 id="authenticating-requests">Authenticating requests</h1>
-<p>This API is not authenticated.</p>
+<p>To authenticate requests, include an <strong><code>Authorization</code></strong> header with the value <strong><code>"Bearer {ACCESS_TOKEN}"</code></strong>.</p>
+<p>All authenticated endpoints are marked with a <code>requires authentication</code> badge in the documentation below.</p>
+<p>You can retrieve your token by visiting your dashboard and clicking <b>Generate API token</b>.</p>
 
         <h1 id="endpoints">Endpoints</h1>
 
@@ -136,8 +141,8 @@ You can switch the language used with the tabs at the top right (or from the nav
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"theresia81@example.com\",
-    \"password\": \"et\"
+    \"email\": \"lorenzo.volkman@example.net\",
+    \"password\": \"vel\"
 }"
 </code></pre></div>
 
@@ -153,8 +158,8 @@ const headers = {
 };
 
 let body = {
-    "email": "theresia81@example.com",
-    "password": "et"
+    "email": "lorenzo.volkman@example.net",
+    "password": "vel"
 };
 
 fetch(url, {
@@ -162,6 +167,26 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/user/login';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'email' =&gt; 'lorenzo.volkman@example.net',
+            'password' =&gt; 'vel',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -243,10 +268,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-user-login"
-               value="theresia81@example.com"
+               value="lorenzo.volkman@example.net"
                data-component="body">
     <br>
-<p>Must be a valid email address. Example: <code>theresia81@example.com</code></p>
+<p>Must be a valid email address. Example: <code>lorenzo.volkman@example.net</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>password</code></b>&nbsp;&nbsp;
@@ -254,10 +279,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-user-login"
-               value="et"
+               value="vel"
                data-component="body">
     <br>
-<p>Example: <code>et</code></p>
+<p>Example: <code>vel</code></p>
         </div>
         </form>
 
@@ -278,9 +303,9 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"query\": \"vel\",
-    \"limit\": 19,
-    \"offset\": 16
+    \"query\": \"illo\",
+    \"limit\": 14,
+    \"offset\": 12
 }"
 </code></pre></div>
 
@@ -296,9 +321,9 @@ const headers = {
 };
 
 let body = {
-    "query": "vel",
-    "limit": 19,
-    "offset": 16
+    "query": "illo",
+    "limit": 14,
+    "offset": 12
 };
 
 fetch(url, {
@@ -306,6 +331,27 @@ fetch(url, {
     headers,
     body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/giphy';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+        'json' =&gt; [
+            'query' =&gt; 'illo',
+            'limit' =&gt; 14,
+            'offset' =&gt; 12,
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -403,10 +449,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="query"                data-endpoint="GETapi-giphy"
-               value="vel"
+               value="illo"
                data-component="body">
     <br>
-<p>Example: <code>vel</code></p>
+<p>Example: <code>illo</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>limit</code></b>&nbsp;&nbsp;
@@ -414,10 +460,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="limit"                data-endpoint="GETapi-giphy"
-               value="19"
+               value="14"
                data-component="body">
     <br>
-<p>Example: <code>19</code></p>
+<p>Example: <code>14</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>offset</code></b>&nbsp;&nbsp;
@@ -425,10 +471,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="offset"                data-endpoint="GETapi-giphy"
-               value="16"
+               value="12"
                data-component="body">
     <br>
-<p>Example: <code>16</code></p>
+<p>Example: <code>12</code></p>
         </div>
         </form>
 
@@ -445,14 +491,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:8000/api/giphy/non/id" \
+    --get "http://localhost:8000/api/giphy/corrupti/id" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:8000/api/giphy/non/id"
+    "http://localhost:8000/api/giphy/corrupti/id"
 );
 
 const headers = {
@@ -464,6 +510,22 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/giphy/corrupti/id';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -561,10 +623,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="id"                data-endpoint="GETapi-giphy--id--id"
-               value="non"
+               value="corrupti"
                data-component="url">
     <br>
-<p>The ID of the giphy. Example: <code>non</code></p>
+<p>The ID of the giphy. Example: <code>corrupti</code></p>
             </div>
                     </form>
 
@@ -600,6 +662,22 @@ fetch(url, {
     method: "GET",
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
+
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/audience_logs';
+$response = $client-&gt;get(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
 
 </span>
 
@@ -725,6 +803,22 @@ fetch(url, {
     headers,
 }).then(response =&gt; response.json());</code></pre></div>
 
+
+<div class="php-example">
+    <pre><code class="language-php">$client = new \GuzzleHttp\Client();
+$url = 'http://localhost:8000/api/giphy';
+$response = $client-&gt;post(
+    $url,
+    [
+        'headers' =&gt; [
+            'Content-Type' =&gt; 'application/json',
+            'Accept' =&gt; 'application/json',
+        ],
+    ]
+);
+$body = $response-&gt;getBody();
+print_r(json_decode((string) $body));</code></pre></div>
+
 </span>
 
 <span id="example-responses-POSTapi-giphy">
@@ -808,6 +902,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
                     <div class="lang-selector">
                                                         <button type="button" class="lang-button" data-language-name="bash">bash</button>
                                                         <button type="button" class="lang-button" data-language-name="javascript">javascript</button>
+                                                        <button type="button" class="lang-button" data-language-name="php">php</button>
                             </div>
             </div>
 </div>

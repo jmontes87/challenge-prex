@@ -26,7 +26,7 @@ endpoints:
         name: email
         description: 'Must be a valid email address.'
         required: true
-        example: theresia81@example.com
+        example: lorenzo.volkman@example.net
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -35,14 +35,14 @@ endpoints:
         name: password
         description: ''
         required: true
-        example: et
+        example: vel
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      email: theresia81@example.com
-      password: et
+      email: lorenzo.volkman@example.net
+      password: vel
     fileParameters: []
     responses: []
     responseFields: []
@@ -76,7 +76,7 @@ endpoints:
         name: query
         description: ''
         required: true
-        example: vel
+        example: illo
         type: string
         enumValues: []
         exampleWasSpecified: false
@@ -85,7 +85,7 @@ endpoints:
         name: limit
         description: ''
         required: false
-        example: 19
+        example: 14
         type: integer
         enumValues: []
         exampleWasSpecified: false
@@ -94,15 +94,15 @@ endpoints:
         name: offset
         description: ''
         required: false
-        example: 16
+        example: 12
         type: integer
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanBodyParameters:
-      query: vel
-      limit: 19
-      offset: 16
+      query: illo
+      limit: 14
+      offset: 12
     fileParameters: []
     responses:
       -
@@ -141,13 +141,13 @@ endpoints:
         name: id
         description: 'The ID of the giphy.'
         required: true
-        example: non
+        example: corrupti
         type: string
         enumValues: []
         exampleWasSpecified: false
         custom: []
     cleanUrlParameters:
-      id: non
+      id: corrupti
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
