@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\GiphyGetByIdResource;
 use App\Http\Requests\GiphySearchRequest;
 use App\Http\Requests\GiphyStoreRequest;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use App\Models\FavoriteGift;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -19,7 +19,7 @@ use Illuminate\Http\JsonResponse;
 
 class GiphyControllerTest extends TestCase
 {
-    use RefreshDatabase;
+    use WithFaker;
 
     public function testSearch()
     {
@@ -33,7 +33,7 @@ class GiphyControllerTest extends TestCase
         $requestMock->shouldReceive('input')->with('offset', 0)->andReturn(0);
 
         $repositoryMock->shouldReceive('search')
-            ->with('funny', 25, 0, 'test-token')
+            ->with('funny', 'test-token', 25, 0)
             ->andReturn(collect([['id' => '1', 'title' => 'Funny GIF']]));
 
         $response = $controller->search($requestMock);
@@ -55,45 +55,54 @@ class GiphyControllerTest extends TestCase
         // Reemplazar la instancia de request en el contenedor de la aplicación
         $this->app->instance('request', $requestMock);
         
-        $response = $controller->getById(1);
+        $response = $controller->show(1);
         $this->assertInstanceOf(\Illuminate\Http\Resources\Json\AnonymousResourceCollection::class, $response);
     }
 
-
-    public function testStoreById()
+    public function testStore()
     {
-        // Simular el objeto Request
-        $requestMock = Mockery::mock(GiphyStoreRequest::class);
-        $requestMock->shouldReceive('validated')->andReturn([
-            'alias' => 'test',
-            'id' => 1, // Simular que el ID proviene del formulario
-        ]);
-        $requestMock->shouldReceive('bearerToken')->andReturn('test-token');
+        // Simula el objeto request con propiedades específicas
+        $mockedRequest = Mockery::mock(GiphyStoreRequest::class);
+        $mockedRequest->shouldReceive('bearerToken')->andReturn('test-token');
+        $mockedRequest->shouldReceive('id')->andReturn(1);
+        $mockedRequest->shouldReceive('all')->andReturn(['alias' => 'test', 'id' => 1]);
 
-        // Mockear el repositorio
-        $repositoryMock = Mockery::mock(GiphyRepository::class);
-        $controller = new GiphyController($repositoryMock);
+        // Crear un usuario real usando la fábrica
+        $user = User::factory()->create();
 
-        // Mockear el método getById en el repositorio
-        $repositoryMock->shouldReceive('getById')
+        // Mock del facade Auth para devolver el id del usuario real
+        Auth::shouldReceive('id')->andReturn($user->id);
+
+        // Establecer user_id en el request usando el id del usuario real
+        $mockedRequest->user_id = $user->id;
+
+        // Mock del repositorio y sus métodos
+        $mockedRepository = Mockery::mock(GiphyRepository::class);
+        $controller = new GiphyController($mockedRepository);
+
+        // Mock del método getById para devolver un GIF ficticio
+        $mockedRepository->shouldReceive('getById')
             ->with(1, 'test-token')
             ->andReturn(['data' => ['id' => '3o7527pa7qs9kCG78A']]);
 
-        // Llamar al método storeById
-        $response = $controller->storeById($requestMock);
+        // Mock del método store para devolver una respuesta exitosa de escritura en la base de datos
+        $mockedRepository->shouldReceive('store')
+            ->with($mockedRequest, ['data' => ['id' => '3o7527pa7qs9kCG78A']])
+            ->andReturn(true);
 
-        // Verificar que la respuesta no es nula y es una instancia de JsonResponse
+        // Ejecutar el método store del controlador
+        $response = $controller->store($mockedRequest);
+
         $this->assertNotNull($response);
         $this->assertInstanceOf(JsonResponse::class, $response);
 
-        // Verificar que los datos se guardaron en la base de datos
-        $this->assertDatabaseHas('favorite_gift', [
-            'gif_id' => '3o7527pa7qs9kCG78A',
-            'user_id' => Auth::id(), // Utiliza Auth::id() para obtener el ID del usuario autenticado
-            'alias' => 'test'
-        ]);
-    }
+        // Verificar que el contenido de la respuesta es correcto
+        $responseData = $response->getData(true);
+        $this->assertEquals('GIF almacenado correctamente', $responseData['message']);
+        $this->assertTrue($responseData['data']);
 
+    }
+    
     protected function tearDown(): void
     {
         Mockery::close();

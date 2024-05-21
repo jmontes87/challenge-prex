@@ -2,41 +2,26 @@
 
 namespace App\Repositories;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
-use App\Repositories\AudienceLogRepository;
 use Illuminate\Support\Facades\Auth;
+use App\Models\FavoriteGift;
 
 class GiphyRepository
 {
-
-    protected $audienceLogRepository;
-
-    /**
-     * Constructor de GiphyService.
-     *
-     * @param AudienceLogRepository $audienceLogRepository
-     * @return void
-     */
-    public function __construct(AudienceLogRepository $audienceLogRepository)
-    {
-        $this->audienceLogRepository = $audienceLogRepository;
-    }
 
     /**
      * Realiza una búsqueda de GIFs en Giphy.
      *
      * @param string $query
+     * @param string $bearerToken
      * @param int $limit
      * @param int $offset
      * @return mixed
      * @throws \Exception
      */
-    public function search($query, $limit = 25, $offset = 0, $bearerToken)
+    public function search($query, $bearerToken, $limit = 25, $offset = 0)
     {
         try {
-
             $params = [
                 'api_key' => config('app.giphy_api_key'),
                 'q' => $query,
@@ -49,14 +34,6 @@ class GiphyRepository
 
             $response = Http::withToken($bearerToken)
                             ->get('https://api.giphy.com/v1/gifs/search', $params);
-
-            $this->audienceLogRepository->log(array(
-                'user_id' => Auth::id(),
-                'service' => 'giphy/search',
-                'request_body' => json_encode($params),
-                'response_body' => $response->successful() ? json_encode($response->json(), true) : json_encode($response, true),
-                'http_status_code' => $response->status()
-            ));
 
             if ($response->successful()) {
                 return $response->json();
@@ -72,24 +49,16 @@ class GiphyRepository
      * Busca un GIF por su ID en Giphy.
      *
      * @param string $id
+     * @param string $bearerToken
      * @return mixed
      */
     public function getById($id, $bearerToken)
     {
         try {
-            
             $params = ['api_key' => config('app.giphy_api_key')];
 
             $response = Http::withToken($bearerToken)
                             ->get("https://api.giphy.com/v1/gifs/{$id}", $params);
-
-            $this->audienceLogRepository->log(array(
-                'user_id' => 1,//auth()->id(),
-                'service' => 'giphy/getById',
-                'request_body' => json_encode($params),
-                'response_body' => $response->successful() ? json_encode($response->json()) : json_decode($response),
-                'http_status_code' => $response->status()
-            ));
 
             if ($response->successful()) {
                 return $response->json();
@@ -104,10 +73,21 @@ class GiphyRepository
     /**
      * Almacena un GIF favorito.
      *
-     * @return void
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function storeFavoriteGift($bearerToken)
+    public function store($request, $data)
     {
-        dd("");
+        try {
+            $favorite = FavoriteGift::create([
+                'gif_id' => $data['data']['id'],
+                'alias' => $request->alias,
+                'user_id' => Auth::id(),
+            ]);
+            return response()->json($favorite, 201);
+
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'Error al realizar la solicitud: ' . $th->getMessage()], 500);
+        }
     }
 }

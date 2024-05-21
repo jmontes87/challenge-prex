@@ -15,7 +15,7 @@ class GiphySearchResource extends JsonResource
     public function toArray(Request $request)
     {
         $data = $this->resource;
-
+        
         $processedData = collect($data)->map(function ($item) {
             return [
                 'type' => $item['type'] ?? null,

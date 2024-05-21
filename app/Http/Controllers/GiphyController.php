@@ -32,13 +32,14 @@ class GiphyController extends Controller
     public function search(GiphySearchRequest $request)
     {
         try {
+            
             $bearerToken = $request->bearerToken();
-    
+            
             $response = $this->giphyRepository->search(
                 $request->input('query'),
+                $bearerToken,
                 $request->input('limit', 25),
                 $request->input('offset', 0),
-                $bearerToken
             );
     
             return GiphySearchResource::collection($response);
@@ -51,7 +52,7 @@ class GiphyController extends Controller
     /**
      * get gif by ID.
      *
-     * @responseFile storage/responses/giphy.getById.json
+     * @responseFile storage/responses/giphy.show.json
      *
      * @param int $id The ID of the Giphy.
      * @return \Illuminate\Http\JsonResponse The JSON response containing the Giphy data.
@@ -80,17 +81,12 @@ class GiphyController extends Controller
     public function store(GiphyStoreRequest $request)
     {
         try {
-
-            $bearerToken = request()->bearerToken();
-            $response = $this->giphyRepository->getById($request->id, $bearerToken);
             
-            $gif = new FavoriteGift();
-            $gif->alias = $request->alias;
-            $gif->gif_id = $response['data']['id'];
-            $gif->user_id = Auth::id();
-            $gif->save();
+            $bearerToken = $request->bearerToken();
+            $data = $this->giphyRepository->getById($request->id, $bearerToken);
+            $response = $this->giphyRepository->store($request, $data);
 
-            return response()->json(['message' => 'GIF almacenado correctamente', 'gif' => $gif], 200);
+            return response()->json(['message' => 'GIF almacenado correctamente', 'data' => $response], 200);
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
