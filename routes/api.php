@@ -17,12 +17,12 @@ use App\Http\Controllers\AudienceLogController;
 |
 */
 
+// Rutas para Giphy, requieren autenticación
+Route::middleware('auth:api')->group(function () {
+    Route::post('/giphy', [GiphyController::class, 'store']);
+    Route::get('/giphy/search', [GiphyController::class, 'search']);
+    Route::get('/giphy/{id}/img', [GiphyController::class, 'show']);
+    Route::get('/audience-logs', [AudienceLogController::class, 'index']);
+});
+
 Route::post('/user/login', [LoginController::class, 'login'])->name('login');
-
-Route::middleware('auth:api')->get('/giphy/search', [GiphyController::class, 'search']);
-
-Route::middleware('auth:api')->get('/giphy/{id}', [GiphyController::class, 'getById']);
-
-Route::get('/audience-logs', [AudienceLogController::class, 'getAll']);
-
-Route::middleware('auth:api')->post('/giphy', [GiphyController::class, 'storeById']);

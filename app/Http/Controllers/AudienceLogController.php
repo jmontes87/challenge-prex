@@ -21,7 +21,7 @@ class AudienceLogController extends Controller
      * 
      * @return \Illuminate\Http\JsonResponse The JSON response containing the search results.
      */
-    public function getAll(){
+    public function index(){
         try {
             
             $bearerToken = request()->bearerToken();

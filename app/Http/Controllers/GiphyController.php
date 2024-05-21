@@ -32,7 +32,6 @@ class GiphyController extends Controller
     public function search(GiphySearchRequest $request)
     {
         try {
-            
             $bearerToken = $request->bearerToken();
     
             $response = $this->giphyRepository->search(
@@ -57,7 +56,7 @@ class GiphyController extends Controller
      * @param int $id The ID of the Giphy.
      * @return \Illuminate\Http\JsonResponse The JSON response containing the Giphy data.
      */
-    public function getById($id)
+    public function show($id)
     {
         try {
             
@@ -78,7 +77,7 @@ class GiphyController extends Controller
      * @param \App\Http\Requests\GiphyStoreRequest $request The request containing the search criteria.
      * @return \Illuminate\Http\JsonResponse The JSON response containing the search results.
      */
-    public function storeById(GiphyStoreRequest $request)
+    public function store(GiphyStoreRequest $request)
     {
         try {
 

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
 use App\Repositories\AudienceLogRepository;
+use Illuminate\Support\Facades\Auth;
 
 class GiphyRepository
 {
@@ -50,7 +51,7 @@ class GiphyRepository
                             ->get('https://api.giphy.com/v1/gifs/search', $params);
 
             $this->audienceLogRepository->log(array(
-                'user_id' => 1,//auth()->id(),
+                'user_id' => Auth::id(),
                 'service' => 'giphy/search',
                 'request_body' => json_encode($params),
                 'response_body' => $response->successful() ? json_encode($response->json(), true) : json_encode($response, true),
