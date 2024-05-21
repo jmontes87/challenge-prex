@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Models\Services;
+namespace App\Repositories;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\AudienceLog;
 
-class AudienceLogService extends Model
+class AudienceLogRepository
 {
-    use HasFactory;
-
     /**
      * Registra un nuevo log de audiencia.
      *
@@ -26,7 +24,11 @@ class AudienceLogService extends Model
         $log = new AudienceLog();
 
         foreach ($data as $key => $value) {
-            $log->{$key} = $value;
+            if ($key === 'response_body' || $key === 'request_body') {
+                $log->{$key} = base64_encode($value);
+            } else {
+                $log->{$key} = $value;
+            }
         }
     
         $log->save();
@@ -35,10 +37,10 @@ class AudienceLogService extends Model
     public function getAll()
     {
         try {
-            return response()->json(AudienceLog::paginate(20));
+            return AudienceLog::paginate(10);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Error al realizar la solicitud: ' . $e->getMessage()], 500);
-        } 
+        }
     }
 
     /**

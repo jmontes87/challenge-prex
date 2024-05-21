@@ -4,14 +4,18 @@ namespace Tests\Unit;
 
 use Tests\TestCase;
 use Mockery;
+use Illuminate\Support\Facades\App;
 use App\Http\Controllers\GiphyController;
 use App\Repositories\GiphyRepository;
 use Illuminate\Http\Request;
 use App\Http\Resources\GiphyGetByIdResource;
 use App\Http\Requests\GiphySearchRequest;
+use App\Http\Requests\GiphyStoreRequest;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use App\Models\FavoriteGift;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\JsonResponse;
 
 class GiphyControllerTest extends TestCase
 {
@@ -58,40 +62,37 @@ class GiphyControllerTest extends TestCase
 
     public function testStoreById()
     {
-        // Crear un usuario de prueba
-        $user = User::factory()->create(['id' => 1, 'name' => 'test', 'email' => 'test@test.com', 'password' => bcrypt('123456')]);
+        // Simular el objeto Request
+        $requestMock = Mockery::mock(GiphyStoreRequest::class);
+        $requestMock->shouldReceive('validated')->andReturn([
+            'alias' => 'test',
+            'id' => 1, // Simular que el ID proviene del formulario
+        ]);
+        $requestMock->shouldReceive('bearerToken')->andReturn('test-token');
 
+        // Mockear el repositorio
         $repositoryMock = Mockery::mock(GiphyRepository::class);
         $controller = new GiphyController($repositoryMock);
 
         // Mockear el método getById en el repositorio
         $repositoryMock->shouldReceive('getById')
             ->with(1, 'test-token')
-            ->andReturn(['data' => ['id' => '1']]);
-
-        // Mockear el Request
-        $requestMock = Mockery::mock(Request::class)->makePartial();
-        $requestMock->shouldReceive('bearerToken')->andReturn('test-token');
-        $requestMock->id = 1;
-
-        // Reemplazar la instancia de request en el contenedor de la aplicación
-        $this->app->instance('request', $requestMock);
+            ->andReturn(['data' => ['id' => '3o7527pa7qs9kCG78A']]);
 
         // Llamar al método storeById
         $response = $controller->storeById($requestMock);
 
         // Verificar que la respuesta no es nula y es una instancia de JsonResponse
         $this->assertNotNull($response);
-        $this->assertInstanceOf(\Illuminate\Http\JsonResponse::class, $response);
+        $this->assertInstanceOf(JsonResponse::class, $response);
 
         // Verificar que los datos se guardaron en la base de datos
-        $this->assertDatabaseHas('favorite_gifts', [
-            'gif_id' => '1',
-            'user_id' => $user->id,
+        $this->assertDatabaseHas('favorite_gift', [
+            'gif_id' => '3o7527pa7qs9kCG78A',
+            'user_id' => Auth::id(), // Utiliza Auth::id() para obtener el ID del usuario autenticado
             'alias' => 'test'
         ]);
     }
-
 
     protected function tearDown(): void
     {

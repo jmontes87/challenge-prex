@@ -19,10 +19,10 @@ use App\Http\Controllers\AudienceLogController;
 
 Route::post('/user/login', [LoginController::class, 'login'])->name('login');
 
-Route::middleware('auth:api')->get('/giphy', [GiphyController::class, 'search']);
+Route::middleware('auth:api')->get('/giphy/search', [GiphyController::class, 'search']);
 
-Route::middleware('auth:api')->get('/giphy/{id}/id', [GiphyController::class, 'getById']);
+Route::middleware('auth:api')->get('/giphy/{id}', [GiphyController::class, 'getById']);
 
-Route::middleware('auth:api')->get('/audience_logs', [AudienceLogController::class, 'getAll']);
+Route::get('/audience-logs', [AudienceLogController::class, 'getAll']);
 
 Route::middleware('auth:api')->post('/giphy', [GiphyController::class, 'storeById']);

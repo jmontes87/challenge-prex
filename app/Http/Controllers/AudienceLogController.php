@@ -3,25 +3,31 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Services\AudienceLogService;
+use App\Repositories\AudienceLogRepository;
+use App\Http\Resources\AudienceLogGetAllResource;
 
 class AudienceLogController extends Controller
 {
 
-    protected $audienceLogService;
+    protected $audienceLogRepository;
 
-    public function __construct(AudienceLogService $audienceLogService)
+    public function __construct(AudienceLogRepository $audienceLogRepository)
     {
-        $this->audienceLogService = $audienceLogService;
+        $this->audienceLogRepository = $audienceLogRepository;
     }
 
+    /**
+     * get logs
+     * 
+     * @return \Illuminate\Http\JsonResponse The JSON response containing the search results.
+     */
     public function getAll(){
         try {
             
             $bearerToken = request()->bearerToken();
-            $gif = $this->audienceLogService->getAll($bearerToken);
+            $gif = $this->audienceLogRepository->getAll($bearerToken);
+            return AudienceLogGetAllResource::collection($gif);
 
-            return response()->json($gif);
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);
         }

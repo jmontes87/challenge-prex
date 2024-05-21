@@ -5,23 +5,22 @@ namespace App\Repositories;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Http;
-use App\Models\Services\AudienceLogService;
+use App\Repositories\AudienceLogRepository;
 
-class GiphyRepository extends Model
+class GiphyRepository
 {
-    use HasFactory;
 
-    protected $audienceLogService;
+    protected $audienceLogRepository;
 
     /**
      * Constructor de GiphyService.
      *
-     * @param AudienceLogService $audienceLogService
+     * @param AudienceLogRepository $audienceLogRepository
      * @return void
      */
-    public function __construct(AudienceLogService $audienceLogService)
+    public function __construct(AudienceLogRepository $audienceLogRepository)
     {
-        $this->audienceLogService = $audienceLogService;
+        $this->audienceLogRepository = $audienceLogRepository;
     }
 
     /**
@@ -50,7 +49,7 @@ class GiphyRepository extends Model
             $response = Http::withToken($bearerToken)
                             ->get('https://api.giphy.com/v1/gifs/search', $params);
 
-            $this->audienceLogService->log(array(
+            $this->audienceLogRepository->log(array(
                 'user_id' => 1,//auth()->id(),
                 'service' => 'giphy/search',
                 'request_body' => json_encode($params),
@@ -83,7 +82,7 @@ class GiphyRepository extends Model
             $response = Http::withToken($bearerToken)
                             ->get("https://api.giphy.com/v1/gifs/{$id}", $params);
 
-            $this->audienceLogService->log(array(
+            $this->audienceLogRepository->log(array(
                 'user_id' => 1,//auth()->id(),
                 'service' => 'giphy/getById',
                 'request_body' => json_encode($params),

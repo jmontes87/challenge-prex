@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Repositories\GiphyRepository;
 use App\Http\Resources\GiphySearchResource;
+use App\Http\Requests\GiphyStoreRequest;
 use App\Http\Requests\GiphySearchRequest;
 use App\Http\Resources\GiphyGetByIdResource;
 use App\Models\FavoriteGift;
+use Illuminate\Support\Facades\Auth;
 
 class GiphyController extends Controller
 {
+    
     protected $giphyRepository;
 
     public function __construct(GiphyRepository $giphyRepository)
@@ -18,9 +21,8 @@ class GiphyController extends Controller
         $this->giphyRepository = $giphyRepository;
     }
 
-
     /**
-     * Search for Giphys based on the provided criteria.
+     * search gif
      *
      * @responseFile storage/responses/giphy.search.json
      *
@@ -47,9 +49,8 @@ class GiphyController extends Controller
         }
     }
     
-
     /**
-     * Get a Giphy by its ID.
+     * get gif by ID.
      *
      * @responseFile storage/responses/giphy.getById.json
      *
@@ -69,7 +70,15 @@ class GiphyController extends Controller
         }
     }
 
-    public function storeById(Request $request)
+    /**
+     * store favorite gift
+     * 
+     * @responseFile storage/responses/giphy.store.json
+     *
+     * @param \App\Http\Requests\GiphyStoreRequest $request The request containing the search criteria.
+     * @return \Illuminate\Http\JsonResponse The JSON response containing the search results.
+     */
+    public function storeById(GiphyStoreRequest $request)
     {
         try {
 
@@ -77,10 +86,12 @@ class GiphyController extends Controller
             $response = $this->giphyRepository->getById($request->id, $bearerToken);
             
             $gif = new FavoriteGift();
-            $gif->alias = 'test';
+            $gif->alias = $request->alias;
             $gif->gif_id = $response['data']['id'];
-            $gif->user_id = 1;
+            $gif->user_id = Auth::id();
             $gif->save();
+
+            return response()->json(['message' => 'GIF almacenado correctamente', 'gif' => $gif], 200);
 
         } catch (\Exception $e) {
             return response()->json(['error' => $e->getMessage()], 500);

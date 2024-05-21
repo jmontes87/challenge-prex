@@ -12,7 +12,7 @@ class LoginController extends Controller
 {
 
     /**
-     * Handle the user login request.
+     * login
      *
      * @responseFile storage/responses/login.get.json
      *
