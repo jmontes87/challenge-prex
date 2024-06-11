@@ -1,64 +1,52 @@
 FROM php:8.2-fpm
 
 # Set working directory
-WORKDIR /var/www
+WORKDIR /var/www/html/app/
+
+# Set environment variables
+ARG user=jmontes
+ARG uid=1000
+
+# Create a new user and set permissions
+RUN useradd -G www-data,root -u $uid -d /home/$user $user
+RUN mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
 
 # Install dependencies
 RUN apt-get update && apt-get install -y \
     build-essential \
     libpng-dev \
-    libjpeg62-turbo-dev \
-    libfreetype6-dev \
-    locales \
+    libonig-dev \
+    libxml2-dev \
     zip \
-    jpegoptim optipng pngquant gifsicle \
     unzip \
     git \
-    curl \
-    lua-zlib-dev \
-    libmemcached-dev \
-    nginx
-
-# Install php extensions
-RUN docker-php-ext-install pdo_mysql exif pcntl bcmath gd ctype fileinfo
-
-# Install supervisor
-RUN apt-get install -y supervisor
-
-# Install composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+    curl 
 
 # Clear cache
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Add user for laravel application
-RUN groupadd -g 1000 www
-RUN useradd -u 1000 -ms /bin/bash -g www www
+# Install PHP extensions
+RUN docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd ctype fileinfo
 
-# Copy code to /var/www
-COPY --chown=www:www-data . /var/www
+# Install Composer
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-# add root to www group
-RUN chmod -R ug+w /var/www/storage
-RUN chmod 777 -R /var/www/storage/logs/
+# Install Node.js and npm
+RUN curl -sL https://deb.nodesource.com/setup_16.x | bash - && apt-get install -y nodejs
 
-# Copy nginx/php/supervisor configs
-RUN cp docker/supervisor.conf /etc/supervisord.conf
-RUN cp docker/php.ini /usr/local/etc/php/conf.d/app.ini
-RUN cp docker/nginx.conf /etc/nginx/sites-enabled/default
+# Change to the Laravel project directory
+WORKDIR /var/www/html/app
 
-# Copy ssh key
-COPY docker/id_rsa /root/.ssh/id_rsa
-RUN chmod 600 /root/.ssh/id_rsa
-RUN ssh-keyscan bitbucket.org >> ~/.ssh/known_hosts
+# Copy the project content to the working directory
+COPY . /var/www/html/app
 
-# PHP Error Log Files
-RUN mkdir /var/log/php
-RUN touch /var/log/php/errors.log && chmod 777 /var/log/php/errors.log
+# Set permissions for storage/logs directory
+RUN chmod -R 777 /var/www/html/app/storage && \
+    chown -R www-data:www-data /var/www/html/app/storage
 
-# Deployment steps
-RUN composer install --optimize-autoloader --no-dev
-RUN chmod +x /var/www/docker/run.sh
+# Expose port for PHP-FPM
+EXPOSE 9000
 
-EXPOSE 6649
-ENTRYPOINT ["/var/www/docker/run.sh"]
+# Default command to start PHP-FPM
+CMD ["php-fpm"]

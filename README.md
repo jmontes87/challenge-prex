@@ -1,8 +1,10 @@
 ## INSTALL - Step by step 
 php artisan sail:install
-./vendor/bin/sail composer install
-./vendor/bin/sail artisan passport:install
-./vendor/bin/sail artisan migrate --seed
+composer install
+php artisan passport:install
+php artisan migrate --seed
+php artisan optimize
+php artisan serve
 
 # Create GIPHY_API_KEY
 Para obtener una clave de API de GIPHY, sigue estos pasos:
@@ -66,4 +68,14 @@ Tambien podriamos haber exportado la collection desde scribe, pero se opto por h
 
 ## License
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## RUN IN DOCKER
+Correr los mismos comandos de la instalacion pero usando el prefijo de sail 
+./vendor/bin/sail
+
+
+
+## NEW CONFIGURATION
+docker-compose build
+docker-compose up -d
 
